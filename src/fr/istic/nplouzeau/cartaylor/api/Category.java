@@ -8,5 +8,6 @@ package fr.istic.nplouzeau.cartaylor.api;
 public interface Category {
 
     String getName();
+    //dflkgnznrg
 
 }
