@@ -13,15 +13,23 @@ public class ConfigurationImpl implements Configuration{
 	public boolean isValid() {
 	for(PartType part : selectedParts) {
 		Set<PartType> incompatibilities = cm.getIncompatibilities(part);
-		if (incompatibilities.contains(part)) return false;
+		for(PartType IncPart : incompatibilities) {
+		if (selectedParts.contains(IncPart)) return false;
+		}
 	}
 		return true;
 	}
 
 	@Override
 	public boolean isComplete() {
-		
-		return false;
+		boolean engineCpt = false, interCpt =false, exterCpt=false,tranCpt=false;
+		for(PartType part : selectedParts) {
+			if(part.getCategory() instanceof Interior) interCpt = true;
+			if(part.getCategory() instanceof Engine) engineCpt = true;
+			if(part.getCategory() instanceof Exterior) interCpt = true;
+			if(part.getCategory() instanceof Transmission) tranCpt = true;
+		}
+		return interCpt && engineCpt && interCpt && tranCpt;
 	}
 
 	@Override
