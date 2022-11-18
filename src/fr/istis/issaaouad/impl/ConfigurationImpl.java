@@ -1,4 +1,6 @@
 package fr.istis.issaaouad.impl;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
 import fr.istic.nplouzeau.cartaylor.api.*;
@@ -6,9 +8,12 @@ import fr.istic.nplouzeau.cartaylor.api.*;
 public class ConfigurationImpl implements Configuration{
 
 	Set<PartType> selectedParts;
-	Set <PartType> InselectedParts;
+
 	CompatibilityManager cm;
-	
+	public ConfigurationImpl(){
+		this.cm = new ComptabilitManagerImpl();
+		this.selectedParts = new HashSet<>();
+	}
 	@Override
 	public boolean isValid() {
 	for(PartType part : selectedParts) {
@@ -24,17 +29,17 @@ public class ConfigurationImpl implements Configuration{
 	public boolean isComplete() {
 		boolean engineCpt = false, interCpt =false, exterCpt=false,tranCpt=false;
 		for(PartType part : selectedParts) {
-			if(part.getCategory() instanceof Interior) interCpt = true;
-			if(part.getCategory() instanceof Engine) engineCpt = true;
-			if(part.getCategory() instanceof Exterior) interCpt = true;
-			if(part.getCategory() instanceof Transmission) tranCpt = true;
+			if(part.getCategory().getName().equals("Interior")) interCpt = true;
+			if(part.getCategory().getName().equals("Engine"))  engineCpt = true;
+			if(part.getCategory().getName().equals("Exterior"))  exterCpt = true;
+			if(part.getCategory().getName().equals("Transmission"))  tranCpt = true;
 		}
 		return interCpt && engineCpt && interCpt && tranCpt;
 	}
 
 	@Override
 	public Set<PartType> getSelectedParts() {
-		return selectedParts;
+		return Collections.unmodifiableSet(this.selectedParts);
 	}
 
 	@Override
@@ -44,20 +49,24 @@ public class ConfigurationImpl implements Configuration{
 
 	@Override
 	public PartType getSelectionForCategory(Category category) {
-		// TODO Auto-generated method stub
+		for(PartType part : this.selectedParts) {
+			if((part.getCategory().getName()).equals(category.getName())) return part;
+		}
 		return null;
 	}
 
 	@Override
 	public void unselectPartType(Category categoryToClear) {
-		// TODO Auto-generated method stub
+		for(PartType part : this.selectedParts) {
+			if((part.getCategory().getName()).equals(categoryToClear.getName())) selectedParts.remove(part);
+		}
 		
 	}
 
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
-		
+		this.selectedParts.removeAll(this.selectedParts);
+	
 	}
 
 }

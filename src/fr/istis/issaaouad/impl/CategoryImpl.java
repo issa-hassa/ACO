@@ -2,18 +2,15 @@ package fr.istis.issaaouad.impl;
 
 import fr.istic.nplouzeau.cartaylor.api.Category;
 
-public class Interior implements Category{
-	
-	private String name;
-	
-	Interior(String name){
+public class CategoryImpl  implements Category{
+	private  String name;
+	public CategoryImpl(String name) {
 		this.name = name;
 	}
 	@Override
 	public String getName() {
-		return name;
+		
+		return this.name;
 	}
 
 }
-
-
