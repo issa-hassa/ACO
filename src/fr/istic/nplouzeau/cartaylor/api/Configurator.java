@@ -22,7 +22,7 @@ public interface Configurator {
     Configuration getConfiguration();
 /**
  * 
- * @return 
+ * @return  un verif
  */
     CompatibilityChecker getCompatibilityChecker();
 

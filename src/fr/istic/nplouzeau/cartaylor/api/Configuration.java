@@ -7,7 +7,7 @@ public interface Configuration {
 
 	/**
 	 * Verification si la configuration est valide 
-	 * @return true si la configuration ets valide et false sinon 
+	 * @return true si la configuration est valide et false sinon 
 	 */
     boolean isValid();
 
@@ -20,12 +20,12 @@ public interface Configuration {
 
     /**
      * 
-     * @return un ensemble de des partType des moteurs selectionnés
+     * @return l'ensemble  des partType  selectionnés
      */
     Set<PartType> getSelectedParts();
     
 	/**
-	 * Selectionner un moteur
+	 * Selectionner un part type
 	 * @param chosenPart
 	 */
     void selectPart(PartType chosenPart);
