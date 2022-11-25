@@ -1,11 +1,14 @@
 package fr.istic.issaaouad.Test;
 
-import java.util.HashSet;
+import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
 import java.util.Set;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import fr.istic.nplouzeau.cartaylor.api.Configuration;
+import fr.istic.nplouzeau.cartaylor.api.CompatibilityManager;
+import fr.istic.nplouzeau.cartaylor.api.Configurator;
 import fr.istic.nplouzeau.cartaylor.api.PartType;
 import fr.istis.issaaouad.impl.CategoryImpl;
 import fr.istis.issaaouad.impl.ComptabilitManagerImpl;
@@ -44,10 +47,50 @@ public class TestIsvalid {
 	
 	
 	
-
 		@Test
-		void test1() {
-			
+		void testCategoryGetName1() {
+			String name = engine.getName();
+			assertEquals(name, "Engine");
+		}
 		
+		@Test 
+		void testCategoryGetName2() {
+			String name = transmission.getName();
+			assertEquals(name, "Transmission");
+		}
+		
+		@Test 
+		void testCategoryGetName3() {
+			String name = exterior.getName();
+			assertEquals(name, "Exterior");
+		}
+		
+		@Test 
+		void testCategoryGetName4() {
+			String name = interior.getName();
+			assertEquals(name, "Interior");
+		}
+		
+		@Test 
+		void test1() {
+			CompatibilityManager comp = new ComptabilitManagerImpl();
+			CompatibilityManager comp1 = new ComptabilitManagerImpl();
+			
+			comp.addIncompatibilities(p1, (Set<PartType>) p2);
+			
+			comp.removeRequirement(p6, p2);
+			
+			assertNotEquals(comp,comp1);
+		
+		}
+		
+		@Test
+		void test2() {
+			ConfigurationImpl conf = new ConfigurationImpl();
+			conf.selectPart(p1);
+			conf.selectPart(p2);
+			conf.selectPart(p3);
+			boolean confTrue = conf.isValid();
+			assertEquals(confTrue, true);
 		}
 }
