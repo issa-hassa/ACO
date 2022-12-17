@@ -1,20 +1,10 @@
-package fr.istic.issaaouad.Test;
+package fr.istic.issaouad.tests;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import fr.istic.isaaaouad.impl.*;
+import fr.istic.nplouzeau.cartaylor.api.PartType;
+import org.junit.Before;
 
 import java.util.Set;
-
-import org.junit.jupiter.api.Test;
-
-import fr.istic.nplouzeau.cartaylor.api.CompatibilityManager;
-import fr.istic.nplouzeau.cartaylor.api.Configurator;
-import fr.istic.nplouzeau.cartaylor.api.PartType;
-import fr.istis.issaaouad.impl.CategoryImpl;
-import fr.istis.issaaouad.impl.ComptabilitManagerImpl;
-import fr.istis.issaaouad.impl.ConfigurationImpl;
-import fr.istis.issaaouad.impl.PartTypeImpl;
-
 
 public class TestIsvalid {
 	
