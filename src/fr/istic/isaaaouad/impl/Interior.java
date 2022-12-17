@@ -3,10 +3,8 @@ import fr.istic.nplouzeau.cartaylor.api.*;
 
 
 public class Interior extends CategoryImpl{
-	String name = "Interior";
 	@Override
-	public String getName() {
-		
-		return this.name;
+	public boolean equals(Object o){
+		return( o instanceof Interior);
 	}
 }

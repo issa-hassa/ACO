@@ -9,9 +9,6 @@ public abstract class CategoryImpl implements  Category {
 		
 		return this.name;
 	}
-	@Override
-	public boolean equals(Object o) {
-		if(!(o instanceof Category)) return false;
-		return ((Category)o).getName() == this.getName();
-	}
+
+
 }

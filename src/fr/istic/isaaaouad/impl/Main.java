@@ -1,13 +1,12 @@
 package fr.istic.isaaaouad.impl;
 
+import javax.lang.model.element.Parameterizable;
+
 public class Main {
+    public static void main(String[] args) {
+        String nom = "part";
+        PartTypeImpl p1 = new PartTypeImpl(nom,new Engine());
+        PartTypeImpl p2 = new PartTypeImpl("gg",new Engine());
 
-	public static void main(String[] args) {
-		Engine e = new Engine();
-		System.out.println(e.getName());
-		Engine e2 = new Engine();
-		System.out.println(e.equals(e2));
-
-	}
-
+    }
 }

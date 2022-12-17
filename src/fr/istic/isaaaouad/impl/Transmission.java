@@ -3,11 +3,9 @@ package fr.istic.isaaaouad.impl;
 
 
 public class Transmission extends CategoryImpl {
-	private String name = "Transmission";
 	@Override
-	public String getName() {
-		
-		return this.name;
+	public boolean equals(Object o){
+		return o instanceof Transmission;
 	}
 
 }

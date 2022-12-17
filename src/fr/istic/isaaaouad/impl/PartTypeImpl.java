@@ -8,7 +8,7 @@ public class PartTypeImpl implements PartType {
 	private Category category;
 	Engine g = new Engine();
 	
-	PartTypeImpl(String name, Category category){
+	public PartTypeImpl(String name, Category category){
 		this.name = name;
 		this.category = category;
 		
@@ -23,6 +23,13 @@ public class PartTypeImpl implements PartType {
 	@Override
 	public Category getCategory() {
 		return this.category;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if(!(obj instanceof PartTypeImpl)) return false;
+		return this.name.equals(((PartTypeImpl)obj).getName()) &&
+				this.category.equals((((PartTypeImpl)obj)).getCategory());
 	}
 	
 
