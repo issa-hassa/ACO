@@ -158,13 +158,6 @@ public class CompatibilityManagerTest {
                 &&  cm.getIncompatibilities(ta5).contains(eg100));
 
 
-
-
-
-
-
-
-
         assertTrue(cm.getIncompatibilities(ts6).isEmpty());
 
         assertTrue(cm.getIncompatibilities(tsf7).size() == 3 &&
@@ -199,6 +192,23 @@ public class CompatibilityManagerTest {
 
     }
 
+
+
+   @DisplayName("test removeRequirement")
+   @Test
+    public void removeRequirementTest(){
+       cm.removeRequirement(eh120, tc120);
+       cm.removeRequirement(xs,is);
+       cm.removeRequirement(tc120,eh120);
+       cm.removeRequirement(is,xs);
+    assertTrue(cm.getRequirements(eh120).isEmpty());
+    assertTrue(cm.getRequirements(xs).isEmpty());
+    assertTrue(cm.getRequirements(tc120).isEmpty());
+    assertTrue(cm.getRequirements(is).isEmpty());
+    assertFalse(cm.getRequirements(tc120).contains(eh120));
+    assertTrue(cm.getRequirements(tc120).size() == 0);
+
+   }
 
 
     @Test
@@ -240,7 +250,7 @@ public class CompatibilityManagerTest {
         assertThrows(RuntimeException.class,()->{
             cm.addRequirements(is,new HashSet<>(Arrays.asList(eg100,tm5)));
         });
-
+        assertThrows(RuntimeException.class, () -> cm.removeRequirement(is, tc120));
     }
 
 
