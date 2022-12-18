@@ -1,14 +1,23 @@
 package fr.istic.issaouad.impl;
 
 
+import fr.istic.Utils;
+import fr.istic.nplouzeau.cartaylor.api.PartType;
+
+public class Exterior extends PartImpl {
 
 
-public class Exterior extends CategoryImpl {
+	Utils.Color color;
+	public Exterior(PartType type) {
+		super(type);
+	}
 
+	public String getColor() {
+		return color.name();
+	}
 
-	@Override
-	public boolean equals(Object o){
-		return( o instanceof Exterior);
+	public void setColor(String color) {
+		this.color.valueOf(color);
 	}
 
 
