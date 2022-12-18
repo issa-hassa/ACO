@@ -83,11 +83,11 @@ public class ComptabilityManagerImpl implements CompatibilityManager {
 		Objects.requireNonNull(target,"the reference can't be null");
 
 		if(this.incompatibilities.containsKey(reference)) {
+			if(!this.incompatibilities.get(reference).contains(target))
+				throw new RuntimeException(reference.getName() + " don't contain " + target.getName() + "as an incompatibility");
 			this.incompatibilities.get(reference).remove(target);
-
 		}
-
-
+		if(this.incompatibilities.get(reference).isEmpty()) this.incompatibilities.remove(reference);
 		
 		
 	}
@@ -127,11 +127,11 @@ public class ComptabilityManagerImpl implements CompatibilityManager {
 		Objects.requireNonNull(target);
 		if(this.requirements.containsKey(reference)) {
 			if(!this.requirements.get(reference).contains(target)){
-				throw new RuntimeException("the reference "+ reference + "dont contain the value "+ target);
+				throw new RuntimeException("the reference "+ reference.getName() + "dont contain the value "+ target.getName());
 			}
 			this.requirements.get(reference).remove(target);
 		}
-		if(this.requirements.isEmpty()) this.requirements.remove(reference);
+		if(this.requirements.get(reference).isEmpty()) this.requirements.remove(reference);
 	}
 
 }

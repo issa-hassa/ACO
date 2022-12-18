@@ -6,7 +6,6 @@ public abstract class CategoryImpl implements  Category {
 	private String name ;
 	@Override
 	public String getName() {
-		
 		return this.name;
 	}
 
