@@ -27,6 +27,7 @@ public class ConfigurationImpl implements Configuration {
 				if(!selectedPartype.contains(required)) return false;
 			}
 
+
 		}
 		return true;
 	}
