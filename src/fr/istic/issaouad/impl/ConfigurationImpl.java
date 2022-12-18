@@ -63,7 +63,7 @@ public class ConfigurationImpl implements Configuration {
 		Objects.requireNonNull(chosenPart, "The chosen part can not be null");
 
 		//on ne selectionne pas plusieurs elements de la meme categorie
-		//unselectPartType(chosenPart.getCategory());
+		unselectPartType(chosenPart.getCategory());
 
 		selectedPartype.add(chosenPart);
 	}
