@@ -1,5 +1,6 @@
 package fr.istic.issaouad.impl;
 
+import fr.istic.Utils;
 import fr.istic.nplouzeau.cartaylor.api.*;
 
 import java.util.*;
@@ -16,10 +17,11 @@ public class ConfiguratorImpl implements Configurator {
 
 
 
-    CategoryImpl engine = new Engine();
-    CategoryImpl exterior = new Exterior();
-    CategoryImpl interior = new Interior();
-    CategoryImpl transmission = new Transmission();
+    CategoryImpl engine = new CategoryImpl(Utils.ENGINE);
+
+    CategoryImpl exterior = new CategoryImpl(Utils.EXTERIOR);
+    CategoryImpl interior = new CategoryImpl(Utils.INTERIOR);
+    CategoryImpl transmission = new CategoryImpl(Utils.TRANSMISSION);
 
     public ConfiguratorImpl(){
         this.cm = new ComptabilityManagerImpl();

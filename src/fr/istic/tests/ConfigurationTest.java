@@ -1,6 +1,7 @@
 package fr.istic.tests;
 
 import com.sun.xml.internal.ws.wsdl.writer.document.Part;
+import fr.istic.Utils;
 import fr.istic.issaouad.impl.*;
 import fr.istic.nplouzeau.cartaylor.api.Category;
 import fr.istic.nplouzeau.cartaylor.api.Configuration;
@@ -35,10 +36,10 @@ public class ConfigurationTest {
     public  void  init(){
         configurator = new ConfiguratorImpl();
         configuration = configurator.getConfiguration();
-        engines =  (configurator.getVariants(new Engine()));
-        interiors =  (configurator.getVariants(new Interior()));
-        exteriors =  (configurator.getVariants(new Exterior()));
-        transmissions =  (configurator.getVariants(new Transmission()));
+        engines =  (configurator.getVariants(new CategoryImpl(Utils.ENGINE) ));
+        interiors =  (configurator.getVariants(new CategoryImpl(Utils.INTERIOR)));
+        exteriors =  (configurator.getVariants(new CategoryImpl (Utils.EXTERIOR)));
+        transmissions =  (configurator.getVariants(new CategoryImpl(Utils.TRANSMISSION) ));
 
     }
 
