@@ -59,6 +59,7 @@ public class ComptabilityManagerImpl implements CompatibilityManager {
 					throw new RuntimeException("The part :" +reference.getName() + " is required for the part "+ incompPartType.getName());
 				}
 
+
 			}
 		}
 		if(this.incompatibilities.containsKey(reference)){

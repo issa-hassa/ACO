@@ -6,7 +6,7 @@ import fr.istic.nplouzeau.cartaylor.api.PartType;
 public class PartTypeImpl implements PartType {
 	private String name;
 	private Category category;
-	Engine g = new Engine();
+
 	
 	public PartTypeImpl(String name, Category category){
 		this.name = name;
