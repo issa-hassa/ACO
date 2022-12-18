@@ -1,6 +1,5 @@
-package fr.istic.issaouad.tests;
+package fr.istic.tests;
 
-import fr.istic.issaouad.impl.*;
 import fr.istic.issaouad.impl.*;
 import fr.istic.nplouzeau.cartaylor.api.CompatibilityManager;
 import org.junit.Before;
@@ -112,8 +111,6 @@ public class CompatibilityManagerTest {
         assertTrue(cm.getRequirements(xs).size() == 1
                 && cm.getRequirements(xs).contains(is));
 
-        assertTrue(cm.getRequirements(ed110).isEmpty());
-        assertTrue(cm.getRequirements(ed180).isEmpty());
 
 
 
@@ -124,6 +121,45 @@ public class CompatibilityManagerTest {
                 && cm.getRequirements(is).contains(xs));
 
 
+
+    }
+
+    @DisplayName("test de : addRequirements()")
+    @Test
+    public void addIncompatibilities(){
+        assertTrue(cm.getIncompatibilities(eg100).isEmpty());
+        assertTrue(cm.getIncompatibilities(eg133).isEmpty());
+        assertTrue(cm.getIncompatibilities(eg210).isEmpty());
+        assertTrue(cm.getIncompatibilities(ed110).isEmpty());
+        assertTrue(cm.getIncompatibilities(ed180).isEmpty());
+        assertTrue(cm.getIncompatibilities(eh120).isEmpty());
+        assertTrue(cm.getIncompatibilities(tm5).isEmpty());
+        assertTrue(cm.getIncompatibilities(tm6).isEmpty());
+        assertTrue(cm.getIncompatibilities(ta5).size() ==1
+                &&  cm.getIncompatibilities(ta5).contains(eg100));
+        assertTrue(cm.getIncompatibilities(ts6).isEmpty());
+        assertTrue(cm.getIncompatibilities(tsf7).size() == 3 &&
+                cm.getIncompatibilities(tsf7).containsAll(Arrays.asList(eg100,eg133,ed110)));
+
+        assertTrue(cm.getIncompatibilities(tc120).isEmpty());
+
+        assertTrue(cm.getIncompatibilities(xc).size() ==1
+                &&  cm.getIncompatibilities(xc).contains(eg210));
+
+        assertTrue(cm.getIncompatibilities(xm).size() ==1
+                &&  cm.getIncompatibilities(xm).contains(eg100));
+        assertTrue(cm.getIncompatibilities(xs).size() == 1
+                && cm.getIncompatibilities(xs).contains(eg100));
+
+
+
+
+
+        assertTrue(cm.getIncompatibilities(in).isEmpty());
+        assertTrue(cm.getIncompatibilities(ih).isEmpty());
+
+        assertTrue(cm.getIncompatibilities(is).size() == 2
+                && cm.getIncompatibilities(is).containsAll(Arrays.asList(eg100,tm5)));
 
     }
 
