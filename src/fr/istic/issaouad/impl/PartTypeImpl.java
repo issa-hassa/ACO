@@ -1,4 +1,4 @@
-package fr.istic.isaaaouad.impl;
+package fr.istic.issaouad.impl;
 
 import fr.istic.nplouzeau.cartaylor.api.Category;
 import fr.istic.nplouzeau.cartaylor.api.PartType;

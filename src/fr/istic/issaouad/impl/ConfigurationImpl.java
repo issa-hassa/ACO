@@ -1,7 +1,7 @@
-package fr.istic.isaaaouad.impl;
+package fr.istic.issaouad.impl;
 
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.Objects;
 import java.util.Set;
 
 import fr.istic.nplouzeau.cartaylor.api.Category;
@@ -56,6 +56,10 @@ public class ConfigurationImpl implements Configuration {
 
 	@Override
 	public void selectPart(PartType chosenPart) {
+		Objects.requireNonNull(chosenPart, "The chosen part can not be null");
+
+		//on ne selectionne pas plusieurs elements de la meme categorie
+		unselectPartType(chosenPart.getCategory());
 
 		selectedPartype.add(chosenPart);
 
@@ -66,6 +70,7 @@ public class ConfigurationImpl implements Configuration {
 		for (PartType partType : selectedPartype) {
 			if(partType.getCategory() == category) return partType;
 		}
+		System.err.println("there is not a part with the given category");
 		return null;
 	}
 
@@ -80,9 +85,9 @@ public class ConfigurationImpl implements Configuration {
 
 	@Override
 	public void clear() {
-		this.cm = new ComptabilityManagerImpl();
+
 		
-		this.selectedPartype.removeAll(selectedPartype);
+		this.selectedPartype.clear();
 	}
 
 }

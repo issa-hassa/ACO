@@ -1,2 +1,5 @@
-package fr.istic;public class Utils {
+package fr.istic;
+
+public class Utils {
+
 }

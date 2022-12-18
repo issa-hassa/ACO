@@ -1,6 +1,4 @@
-package fr.istic.isaaaouad.impl;
-
-import javax.lang.model.element.Parameterizable;
+package fr.istic.issaouad.impl;
 
 public class Main {
     public static void main(String[] args) {

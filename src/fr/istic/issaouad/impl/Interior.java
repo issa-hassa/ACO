@@ -1,5 +1,4 @@
-package fr.istic.isaaaouad.impl;
-import fr.istic.nplouzeau.cartaylor.api.*;
+package fr.istic.issaouad.impl;
 
 
 public class Interior extends CategoryImpl{

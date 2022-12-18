@@ -1,22 +1,19 @@
-package fr.istic.isaaaouad.impl;
+package fr.istic.issaouad.impl;
 
 import java.util.*;
 
-import com.sun.javafx.collections.MappingChange.Map;
-
 import fr.istic.nplouzeau.cartaylor.api.CompatibilityManager;
 import fr.istic.nplouzeau.cartaylor.api.PartType;
-import jdk.nashorn.internal.ir.annotations.Immutable;
 
-public class ComptablityManagerImpl implements CompatibilityManager {
-	HashMap<PartType, Set<PartType>> incompatibilities = new HashMap <PartType, Set<PartType>>();
-	HashMap<PartType, Set<PartType>> requirements =  new HashMap <PartType, Set<PartType>>();
+public class ComptabilityManagerImpl implements CompatibilityManager {
+	HashMap<PartType, Set<PartType>> incompatibilities ;
+	HashMap<PartType, Set<PartType>> requirements;
 
 
-	public ComptablityManagerImpl(HashMap<PartType, Set<PartType>> incompatibilities, HashMap<PartType, Set<PartType>> requirements) {
+	public ComptabilityManagerImpl() {
 		
-		this.incompatibilities = incompatibilities;
-		this.requirements = requirements;
+		this.incompatibilities = new HashMap<>();
+		this.requirements = new HashMap<>();
 	}
 
 	@Override
@@ -25,7 +22,7 @@ public class ComptablityManagerImpl implements CompatibilityManager {
 		if(this.incompatibilities.containsKey(reference)){
 			return Collections.unmodifiableSet(this.incompatibilities.get(reference));
 		}
-		return new HashSet<PartType>();
+		return Collections.emptySet();
 	}
 
 	@Override
@@ -34,7 +31,7 @@ public class ComptablityManagerImpl implements CompatibilityManager {
 		if(this.requirements.containsKey(reference)) {
 			return Collections.unmodifiableSet(this.requirements.get(reference));
 		}
-		return new HashSet<PartType>();
+		return Collections.emptySet();
 	}
 
 	/**
@@ -80,8 +77,8 @@ public class ComptablityManagerImpl implements CompatibilityManager {
 	 */
 	@Override
 	public void removeIncompatibility(PartType reference, PartType target) {
-		Objects.requireNonNull(reference);
-		Objects.requireNonNull(target);
+		Objects.requireNonNull(reference, "the target can't be null");
+		Objects.requireNonNull(target,"the reference can't be null");
 
 		if(this.incompatibilities.containsKey(reference)) {
 			this.incompatibilities.get(reference).remove(target);
@@ -100,7 +97,7 @@ public class ComptablityManagerImpl implements CompatibilityManager {
 
 
 
-		if(this.incompatibilities.containsKey(reference)) {
+		if(this.requirements.containsKey(reference)) {
 
 			for(PartType incompPartType : target){
 				if(getIncompatibilities(reference).contains(incompPartType)){
@@ -110,12 +107,12 @@ public class ComptablityManagerImpl implements CompatibilityManager {
 					throw new RuntimeException("The part :" +reference.getName() + " is incompatible with the part "+ incompPartType.getName());
 				}
 				if(!getIncompatibilities(reference).contains(incompPartType)){
-					this.incompatibilities.get(reference).add(incompPartType);
+					this.requirements.get(reference).add(incompPartType);
 				}
 			}
 		}
 		else{
-			this.incompatibilities.put(reference, target);
+			this.requirements.put(reference, target);
 		}
 		
 	}
