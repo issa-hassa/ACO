@@ -13,15 +13,13 @@ public class Engine extends PartImpl {
 
 	protected String power;
 
-	protected Set<String> typePossibilities;
-	protected Set<String> powerPossibilities;
 
 
 	public Engine(PartType type) {
 		super(type);
 	}
 
-	protected String getengineType(){
+	protected String getEngineType(){
 		return engineType.name();
 	}
 	protected void  setEngineType(String type) throws IllegalArgumentException {
@@ -39,28 +37,65 @@ public class Engine extends PartImpl {
 		if(!getAvailablePropertyValues(Utils.POWER).contains(type)){
 			throw new IllegalArgumentException(type + " is not a power property");
 		}
+		this.power = type;
 	}
 
 	public static class EG100 extends Engine {
 
 		public EG100(PartType type) {
 			super(type);
+			this.power = Utils.KW_100;
+			this.engineType = Utils.EngineType.GASOLINE;
+			addProperty(
+					Utils.POWER,
+					this :: getPower,
+					this :: setEnginePower,
+					new HashSet<>(Arrays.asList(Utils.KW_100))
+			);
+			addProperty(Utils.TYPE,
+					this :: getEngineType,
+					this :: setEngineType,
+					new HashSet<>(Arrays.asList(Utils.EngineType.GASOLINE.name()))
+			);
 		}
 	}
 	public static class EG133 extends Engine {
 
 		public EG133(PartType type) {
 			super(type);
+			this.power = Utils.KW_133;
+			this.engineType = Utils.EngineType.GASOLINE;
+			addProperty(
+					Utils.POWER,
+					this :: getPower,
+					this :: setEnginePower,
+					new HashSet<>(Arrays.asList(Utils.KW_133))
+			);
+			addProperty(Utils.TYPE,
+					this :: getEngineType,
+					this :: setEngineType,
+					new HashSet<>(Arrays.asList(Utils.EngineType.GASOLINE.name()))
+			);
 		}
 	}
 	public static class EG210 extends Engine {
 
 		public EG210(PartType type) {
 			super(type);
+			this.power = Utils.KW_120;
 			this.engineType = Utils.EngineType.DIESEL;
-			this.typePossibilities = new HashSet<>(Arrays.asList(Utils.EngineType.GASOLINE.name()));
-			this.powerPossibilities = new HashSet<>(Arrays.asList(Utils.EngineType.GASOLINE.name()));
-			this.power = "100KW";
+			addProperty(
+					Utils.POWER,
+					this :: getPower,
+					this :: setEnginePower,
+					new HashSet<>(Arrays.asList(Utils.KW_210))
+			);
+			addProperty(Utils.TYPE,
+					this :: getEngineType,
+					this :: setEngineType,
+					new HashSet<>(Arrays.asList(Utils.EngineType.GASOLINE.name()))
+					);
+
 
 		}
 	}
@@ -68,18 +103,58 @@ public class Engine extends PartImpl {
 
 		public ED110(PartType type) {
 			super(type);
+			this.power = Utils.KW_110;
+			this.engineType = Utils.EngineType.DIESEL;
+			addProperty(
+					Utils.POWER,
+					this :: getPower,
+					this :: setEnginePower,
+					new HashSet<>(Arrays.asList(Utils.KW_110))
+			);
+			addProperty(Utils.TYPE,
+					this :: getEngineType,
+					this :: setEngineType,
+					new HashSet<>(Arrays.asList(Utils.EngineType.DIESEL.name()))
+			);
 		}
+
 	}
 	public static class EG180 extends Engine {
 
 		public EG180(PartType type) {
 			super(type);
+			this.power = Utils.KW_180;
+			this.engineType = Utils.EngineType.DIESEL;
+			addProperty(
+					Utils.POWER,
+					this :: getPower,
+					this :: setEnginePower,
+					new HashSet<>(Arrays.asList(Utils.KW_180))
+			);
+			addProperty(Utils.TYPE,
+					this :: getEngineType,
+					this :: setEngineType,
+					new HashSet<>(Arrays.asList(Utils.EngineType.DIESEL.name()))
+			);
 		}
 	}
 	public static class EH120 extends Engine {
 
 		public EH120(PartType type) {
 			super(type);
+			this.power = Utils.KW_120;
+			this.engineType = Utils.EngineType.HYBRID;
+			addProperty(
+					Utils.POWER,
+					this :: getPower,
+					this :: setEnginePower,
+					new HashSet<>(Arrays.asList(Utils.KW_120))
+			);
+			addProperty(Utils.TYPE,
+					this :: getEngineType,
+					this :: setEngineType,
+					new HashSet<>(Arrays.asList(Utils.EngineType.HYBRID.name()))
+			);
 		}
 	}
 
