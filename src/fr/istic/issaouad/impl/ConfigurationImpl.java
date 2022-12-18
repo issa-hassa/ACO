@@ -9,9 +9,11 @@ import fr.istic.nplouzeau.cartaylor.api.Configuration;
 import fr.istic.nplouzeau.cartaylor.api.PartType;
 
 public class ConfigurationImpl implements Configuration {
-	ComptabilityManagerImpl cm ;
-	Set<PartType> selectedPartype;
+	private ComptabilityManagerImpl cm ;
+	private Set<PartType> selectedPartype;
 	public ConfigurationImpl(ComptabilityManagerImpl cm, Set<PartType> selectedPartype) {
+		Objects.requireNonNull(cm);
+		Objects.requireNonNull(selectedPartype);
 		this.cm = cm;
 		this.selectedPartype = selectedPartype;
 	}
@@ -31,15 +33,16 @@ public class ConfigurationImpl implements Configuration {
 
 	@Override
 	public boolean isComplete() {
+
 		boolean enginePresent = false;
 		boolean interiorPresent = false;
 		boolean exteriorPresent = false;
 		boolean transmissionPresent = false;
 		for(PartType selected : selectedPartype){
-			enginePresent = (selected.getCategory() instanceof Engine);
-			interiorPresent = (selected.getCategory() instanceof Engine);
-			exteriorPresent = (selected.getCategory() instanceof Engine);
-			transmissionPresent = (selected.getCategory() instanceof Engine);
+			if((selected.getCategory() instanceof Engine)) enginePresent = true;
+			if((selected.getCategory() instanceof Interior)) interiorPresent = true ;
+			if((selected.getCategory() instanceof Exterior)) exteriorPresent = true ;
+			if((selected.getCategory() instanceof Transmission)) transmissionPresent = true;
 			if(enginePresent && interiorPresent && exteriorPresent && transmissionPresent) {
 				return true;
 			}
@@ -59,10 +62,9 @@ public class ConfigurationImpl implements Configuration {
 		Objects.requireNonNull(chosenPart, "The chosen part can not be null");
 
 		//on ne selectionne pas plusieurs elements de la meme categorie
-		unselectPartType(chosenPart.getCategory());
+		//unselectPartType(chosenPart.getCategory());
 
 		selectedPartype.add(chosenPart);
-
 	}
 
 	@Override
@@ -76,8 +78,8 @@ public class ConfigurationImpl implements Configuration {
 
 	@Override
 	public void unselectPartType(Category categoryToClear) {
-	
-		selectedPartype.removeIf(partType -> (partType.getCategory()  == categoryToClear));
+		Objects.requireNonNull(categoryToClear, "");
+		selectedPartype.removeIf(partType -> (partType.getCategory().equals(categoryToClear)));
 		
 	
 		
