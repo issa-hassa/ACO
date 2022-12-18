@@ -67,6 +67,17 @@ public class ConfigurationTest {
     }
 
     @Test
+    public void isComplite2(){
+        configuration.selectPart(engines.iterator().next());
+        configuration.selectPart(interiors.iterator().next());
+        configuration.selectPart(transmissions.iterator().next());
+        assertFalse(configuration.isComplete());
+        configuration.selectPart(exteriors.iterator().next());
+        assertTrue(configuration.isComplete());
+
+    }
+
+    @Test
     /**
      * test pour (xs --> is, TC120 --> EH120)
      */
