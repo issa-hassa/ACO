@@ -4,13 +4,14 @@ import fr.istic.issaouad.impl.*;
 import fr.istic.nplouzeau.cartaylor.api.CompatibilityManager;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 
 import java.util.Arrays;
 import java.util.HashSet;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class CompatibilityManagerTest {
 
@@ -46,6 +47,9 @@ public class CompatibilityManagerTest {
 
    CompatibilityManager cm = new ComptabilityManagerImpl();
 
+    /**
+     * reseting compatibilities
+     */
     @Before
     public void init(){
          eg100 = new PartTypeImpl("EG100",engine) ;
@@ -53,7 +57,7 @@ public class CompatibilityManagerTest {
          eg210 = new PartTypeImpl("EG210",engine) ;
          ed110 = new PartTypeImpl("EG110",engine) ;
          ed180 = new PartTypeImpl("EG180",engine) ;
-         eh120 = new PartTypeImpl("EG120",engine) ;
+         eh120 = new PartTypeImpl("EH120",engine) ;
 
          xc = new PartTypeImpl("XC",exterior);
          xm = new PartTypeImpl("XM",exterior);
@@ -94,8 +98,15 @@ public class CompatibilityManagerTest {
         assertTrue(cm.getRequirements(eg210).isEmpty());
         assertTrue(cm.getRequirements(ed110).isEmpty());
         assertTrue(cm.getRequirements(ed180).isEmpty());
+
+
         assertEquals(1,cm.getRequirements(eh120).size() );
         assertTrue(cm.getRequirements(eh120).contains(tc120));
+
+
+
+
+
         assertTrue(cm.getRequirements(tm5).isEmpty());
         assertTrue(cm.getRequirements(tm6).isEmpty());
         assertTrue(cm.getRequirements(ta5).isEmpty());
@@ -104,6 +115,8 @@ public class CompatibilityManagerTest {
 
         assertTrue(cm.getRequirements(tc120).size() == 1
                 && cm.getRequirements(tc120).contains(eh120));
+
+
 
         assertTrue(cm.getRequirements(xc).isEmpty());
         assertTrue(cm.getRequirements(xm).isEmpty());
@@ -114,11 +127,16 @@ public class CompatibilityManagerTest {
 
 
 
+
+
+
         assertTrue(cm.getRequirements(in).isEmpty());
         assertTrue(cm.getRequirements(ih).isEmpty());
 
         assertTrue(cm.getRequirements(is).size() == 1
                 && cm.getRequirements(is).contains(xs));
+
+
 
 
 
@@ -135,23 +153,40 @@ public class CompatibilityManagerTest {
         assertTrue(cm.getIncompatibilities(eh120).isEmpty());
         assertTrue(cm.getIncompatibilities(tm5).isEmpty());
         assertTrue(cm.getIncompatibilities(tm6).isEmpty());
+
         assertTrue(cm.getIncompatibilities(ta5).size() ==1
                 &&  cm.getIncompatibilities(ta5).contains(eg100));
+
+
+
+
+
+
+
+
+
         assertTrue(cm.getIncompatibilities(ts6).isEmpty());
+
         assertTrue(cm.getIncompatibilities(tsf7).size() == 3 &&
                 cm.getIncompatibilities(tsf7).containsAll(Arrays.asList(eg100,eg133,ed110)));
+
+
+
+
+
 
         assertTrue(cm.getIncompatibilities(tc120).isEmpty());
 
         assertTrue(cm.getIncompatibilities(xc).size() ==1
                 &&  cm.getIncompatibilities(xc).contains(eg210));
 
+
         assertTrue(cm.getIncompatibilities(xm).size() ==1
                 &&  cm.getIncompatibilities(xm).contains(eg100));
+
+
         assertTrue(cm.getIncompatibilities(xs).size() == 1
                 && cm.getIncompatibilities(xs).contains(eg100));
-
-
 
 
 
@@ -161,7 +196,54 @@ public class CompatibilityManagerTest {
         assertTrue(cm.getIncompatibilities(is).size() == 2
                 && cm.getIncompatibilities(is).containsAll(Arrays.asList(eg100,tm5)));
 
+
     }
+
+
+
+    @Test
+    public void testThrows(){
+        assertThrows(RuntimeException.class,()->{
+            cm.addRequirements(ta5,new HashSet<>(Arrays.asList(eg100)));
+        });
+        assertThrows(RuntimeException.class,()->{
+            cm.addRequirements(tsf7,new HashSet<>(Arrays.asList(eg100,eg133,ed110)));
+        });
+        assertThrows(RuntimeException.class,()->{
+            cm.addRequirements(xc,new HashSet<>(Arrays.asList(eg210)));
+        });
+
+        assertThrows(RuntimeException.class,()->{
+            cm.addRequirements(xm,new HashSet<>(Arrays.asList(eg100)));
+        });
+        assertThrows(RuntimeException.class,()->{
+            cm.addRequirements(xs,new HashSet<>(Arrays.asList(eg100)));
+        });
+        assertThrows(RuntimeException.class,()->{
+            cm.addRequirements(ta5,new HashSet<>(Arrays.asList(eg100)));
+        });
+        assertThrows(RuntimeException.class,()->{
+            cm.addIncompatibilities(eh120,new HashSet<>(Arrays.asList(tc120)));
+        });
+
+        assertThrows(RuntimeException.class,()->{
+            cm.addIncompatibilities(tc120,new HashSet<>(Arrays.asList(eh120)));
+        });
+
+        assertThrows(RuntimeException.class,()->{
+            cm.addIncompatibilities(xs,new HashSet<>(Arrays.asList(is)));
+        });
+
+        assertThrows(RuntimeException.class,()->{
+            cm.addIncompatibilities(is,new HashSet<>(Arrays.asList(xs)));
+        });
+        assertThrows(RuntimeException.class,()->{
+            cm.addRequirements(is,new HashSet<>(Arrays.asList(eg100,tm5)));
+        });
+
+    }
+
+
 
 
 
