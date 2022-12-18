@@ -126,8 +126,12 @@ public class ComptabilityManagerImpl implements CompatibilityManager {
 		Objects.requireNonNull(reference);
 		Objects.requireNonNull(target);
 		if(this.requirements.containsKey(reference)) {
+			if(!this.requirements.get(reference).contains(target)){
+				throw new RuntimeException("the reference "+ reference + "dont contain the value "+ target);
+			}
 			this.requirements.get(reference).remove(target);
 		}
+		if(this.requirements.isEmpty()) this.requirements.remove(reference);
 	}
 
 }
