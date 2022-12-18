@@ -49,23 +49,25 @@ public class ComptabilityManagerImpl implements CompatibilityManager {
 
 
 
-		if(this.incompatibilities.containsKey(reference)) {
+		if(this.requirements.containsKey(reference)) {
 
 			for(PartType incompPartType : target){
-				if(getRequirements(reference).contains(incompPartType)){
+				if(this.getRequirements(reference).contains(incompPartType)){
 					throw new RuntimeException("The part :" +incompPartType.getName() + " is required for the part "+ reference.getName());
 				}
-				if(getRequirements(incompPartType).contains(reference)){
+				if(this.getRequirements(incompPartType).contains(reference)){
 					throw new RuntimeException("The part :" +reference.getName() + " is required for the part "+ incompPartType.getName());
 				}
-				if(!getIncompatibilities(reference).contains(incompPartType)){
-					this.incompatibilities.get(reference).add(incompPartType);
-				}
+
 			}
 		}
-		else{
+		if(this.incompatibilities.containsKey(reference)){
+			this.incompatibilities.get(reference).addAll(target);
+		}
+		else {
 			this.incompatibilities.put(reference, target);
 		}
+
 		
 		
 	}
@@ -97,7 +99,7 @@ public class ComptabilityManagerImpl implements CompatibilityManager {
 
 
 
-		if(this.requirements.containsKey(reference)) {
+		if(this.incompatibilities.containsKey(reference)) {
 
 			for(PartType incompPartType : target){
 				if(getIncompatibilities(reference).contains(incompPartType)){
@@ -106,14 +108,16 @@ public class ComptabilityManagerImpl implements CompatibilityManager {
 				if(getIncompatibilities(incompPartType).contains(reference)){
 					throw new RuntimeException("The part :" +reference.getName() + " is incompatible with the part "+ incompPartType.getName());
 				}
-				if(!getIncompatibilities(reference).contains(incompPartType)){
-					this.requirements.get(reference).add(incompPartType);
-				}
 			}
 		}
-		else{
+
+		if(this.requirements.containsKey(reference)){
+				this.requirements.get(reference).addAll(target);
+		}
+		else {
 			this.requirements.put(reference, target);
 		}
+
 		
 	}
 
