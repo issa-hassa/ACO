@@ -24,6 +24,7 @@ public class ConfiguratorImpl implements Configurator {
     public ConfiguratorImpl(){
         this.cm = new ComptabilityManagerImpl();
         this.categories  = new HashSet<>(Arrays.asList(engine,exterior,interior,transmission));
+        this.allPart = new HashSet<>();
 
         init();
         this.configuration = new ConfigurationImpl(this.cm,new HashSet<>());
@@ -57,6 +58,8 @@ public class ConfiguratorImpl implements Configurator {
         PartType xm = new PartTypeImpl("XM",exterior);
         PartType xs = new PartTypeImpl("XS",exterior);
 
+        allPart.addAll(Arrays.asList(xc,xm,xs));
+
         cm.addIncompatibilities(xc, new HashSet<>(Arrays.asList(eg210)));
         cm.addIncompatibilities(xm, new HashSet<>(Arrays.asList(eg100)));
         cm.addIncompatibilities(xs, new HashSet<>(Arrays.asList(eg100)));
@@ -87,7 +90,7 @@ public class ConfiguratorImpl implements Configurator {
         Objects.requireNonNull(category, "The category can't be null for getVariants");
         Set<PartType> variants = new HashSet<>();
         for(PartType p : allPart){
-            if(p.getCategory() instanceof Category){
+            if(p.getCategory().equals( category)){
                 variants.add(p);
             }
         }
