@@ -249,13 +249,4 @@ public class CompatibilityManagerTest {
         assertThrows(RuntimeException.class, () -> cm.removeRequirement(is, tc120));
     }
 
-
-
-
-
-
-
-
-
-
 }
