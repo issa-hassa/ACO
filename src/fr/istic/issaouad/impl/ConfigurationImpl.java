@@ -41,10 +41,10 @@ public class ConfigurationImpl implements Configuration {
 		boolean exteriorPresent = false;
 		boolean transmissionPresent = false;
 		for(PartType selected : selectedPartype){
-			if((selected.getCategory().getName().equals(Utils.ENGINE))) enginePresent = true;
-			if((selected.getCategory().getName().equals(Utils.INTERIOR))) interiorPresent = true ;
-			if((selected.getCategory().getName().equals(Utils.EXTERIOR))) exteriorPresent = true ;
-			if((selected.getCategory().getName().equals(Utils.TRANSMISSION))) transmissionPresent = true;
+			if((selected.getCategory().equals(new CategoryImpl(Utils.ENGINE)))) enginePresent = true;
+			if((selected.getCategory().equals(new CategoryImpl(Utils.INTERIOR)))) interiorPresent = true ;
+			if((selected.getCategory().equals(new CategoryImpl(Utils.EXTERIOR)))) exteriorPresent = true ;
+			if((selected.getCategory().equals(new CategoryImpl(Utils.TRANSMISSION)))) transmissionPresent = true;
 			if(enginePresent && interiorPresent && exteriorPresent && transmissionPresent) {
 				return true;
 			}

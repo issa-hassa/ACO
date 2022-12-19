@@ -13,6 +13,11 @@ public class CategoryImpl implements  Category {
 	public String getName() {
 		return this.name;
 	}
+	@Override
+	public boolean equals(Object obj) {
+	    if(!(obj instanceof CategoryImpl)) return false;
+		return this.name.equals(((CategoryImpl)obj).getName());
+	}
 
 	@Override
 	public boolean equals(Object o){

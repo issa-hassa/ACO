@@ -32,14 +32,15 @@ public class ConfigurationTest {
      Set<PartType> transmissions;
 
 
+
     @Before
     public  void  init(){
         configurator = new ConfiguratorImpl();
         configuration = configurator.getConfiguration();
-        engines =  (configurator.getVariants(new CategoryImpl(Utils.ENGINE) ));
-        interiors =  (configurator.getVariants(new CategoryImpl(Utils.INTERIOR)));
-        exteriors =  (configurator.getVariants(new CategoryImpl (Utils.EXTERIOR)));
-        transmissions =  (configurator.getVariants(new CategoryImpl(Utils.TRANSMISSION) ));
+        engines =  (configurator.getVariants(new CategoryImpl(Utils.ENGINE)));
+        interiors =  (configurator.getVariants( new CategoryImpl(Utils.INTERIOR)));
+        exteriors =  (configurator.getVariants( new CategoryImpl(Utils.EXTERIOR)));
+        transmissions =  (configurator.getVariants( new CategoryImpl(Utils.TRANSMISSION)));
 
     }
 
@@ -63,17 +64,6 @@ public class ConfigurationTest {
         configuration.selectPart(transmissions.iterator().next());
         assertTrue(configuration.isComplete());
         configuration.clear();
-
-    }
-
-    @Test
-    public void isComplite2(){
-        configuration.selectPart(engines.iterator().next());
-        configuration.selectPart(interiors.iterator().next());
-        configuration.selectPart(transmissions.iterator().next());
-        assertFalse(configuration.isComplete());
-        configuration.selectPart(exteriors.iterator().next());
-        assertTrue(configuration.isComplete());
 
     }
 
