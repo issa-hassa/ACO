@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.Objects;
 import java.util.Set;
 
+import fr.istic.Utils;
 import fr.istic.nplouzeau.cartaylor.api.Category;
 import fr.istic.nplouzeau.cartaylor.api.Configuration;
 import fr.istic.nplouzeau.cartaylor.api.PartType;
@@ -40,10 +41,10 @@ public class ConfigurationImpl implements Configuration {
 		boolean exteriorPresent = false;
 		boolean transmissionPresent = false;
 		for(PartType selected : selectedPartype){
-			if((selected.getCategory() instanceof Engine)) enginePresent = true;
-			if((selected.getCategory() instanceof Interior)) interiorPresent = true ;
-			if((selected.getCategory() instanceof Exterior)) exteriorPresent = true ;
-			if((selected.getCategory() instanceof Transmission)) transmissionPresent = true;
+			if((selected.getCategory().equals(new CategoryImpl(Utils.ENGINE)))) enginePresent = true;
+			if((selected.getCategory().equals(new CategoryImpl(Utils.INTERIOR)))) interiorPresent = true ;
+			if((selected.getCategory().equals(new CategoryImpl(Utils.EXTERIOR)))) exteriorPresent = true ;
+			if((selected.getCategory().equals(new CategoryImpl(Utils.TRANSMISSION)))) transmissionPresent = true;
 			if(enginePresent && interiorPresent && exteriorPresent && transmissionPresent) {
 				return true;
 			}
@@ -63,7 +64,7 @@ public class ConfigurationImpl implements Configuration {
 		Objects.requireNonNull(chosenPart, "The chosen part can not be null");
 
 		//on ne selectionne pas plusieurs elements de la meme categorie
-		//unselectPartType(chosenPart.getCategory());
+		unselectPartType(chosenPart.getCategory());
 
 		selectedPartype.add(chosenPart);
 	}

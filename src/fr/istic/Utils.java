@@ -1,10 +1,21 @@
 package fr.istic;
 
 public class Utils {
+
+
+    public static final String ENGINE = "Engine";
+    public static final String EXTERIOR = "Exterior";
+    public static final String INTERIOR = "Interior";
+    public static final String TRANSMISSION = "Transmission";
+
+
+
+
     public static final String POWER = "power";
     public static final String TYPE = "type";
 
     public static final String PAINT = "paint";
+
 
     public static final String TRANSMISSION_TYPE = "transmission_type";
 
