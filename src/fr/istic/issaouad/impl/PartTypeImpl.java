@@ -16,20 +16,20 @@ public class PartTypeImpl implements PartType {
 	private Class <? extends PartImpl> classRef;
 
 
-	
+
 	public PartTypeImpl(String name,Class <? extends PartImpl> classRef, Category category){
 		Objects.requireNonNull(name, " the name of the part can't be null");
 		Objects.requireNonNull(category, " the category of the part can't be null");
 		this.name = name;
 		this.category = category;
 		this.classRef = classRef;
-		
+
 	}
 
 	public PartImpl newInstance(){
 		Constructor<? extends PartImpl> constructor;
 		try {
-		    constructor = classRef.getConstructor();
+			constructor = classRef.getConstructor();
 			return constructor.newInstance();
 		}
 		catch (Exception e){
@@ -41,7 +41,7 @@ public class PartTypeImpl implements PartType {
 
 	@Override
 	public String getName() {
-		
+
 		return this.name;
 	}
 
@@ -51,6 +51,6 @@ public class PartTypeImpl implements PartType {
 	}
 
 
-	
+
 
 }
