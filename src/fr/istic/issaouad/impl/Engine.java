@@ -86,7 +86,7 @@ public  class Engine extends PartImpl {
 
 		public EG210(PartType type) {
 			super(type);
-			this.power = Utils.KW_120;
+			this.power = Utils.KW_210;
 			this.engineType = Utils.EngineType.DIESEL;
 			addProperty(
 					Utils.POWER,

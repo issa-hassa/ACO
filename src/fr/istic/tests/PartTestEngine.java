@@ -9,11 +9,9 @@ import fr.istic.nplouzeau.cartaylor.api.Category;
 import fr.istic.nplouzeau.cartaylor.api.PartType;
 import org.junit.Test;
 
-import javax.rmi.CORBA.Util;
-
 import static org.junit.Assert.assertEquals;
 
-public class PartTest {
+public class PartTestEngine {
 
 
     @Test
@@ -34,7 +32,11 @@ public class PartTest {
         PartImpl eh120Instance = eh120.newInstance();
 
         assertEquals(eg100Instance.getProperty(Utils.POWER).get(), Utils.KW_100);
-
+        assertEquals(eg133Instance.getProperty(Utils.POWER).get(), Utils.KW_133);
+        assertEquals(eg210Instance.getProperty(Utils.POWER).get(), Utils.KW_210);
+        assertEquals(ed110Instance.getProperty(Utils.POWER).get(), Utils.KW_110);
+        assertEquals(ed180Instance.getProperty(Utils.POWER).get(), Utils.KW_180);
+        assertEquals(eh120Instance.getProperty(Utils.POWER).get(), Utils.KW_120);
 
     }
 }
