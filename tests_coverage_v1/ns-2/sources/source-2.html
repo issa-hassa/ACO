@@ -1,0 +1,236 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ConfigurationTest</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">fr.istic.tests</a>
+</div>
+
+<h1>Coverage Summary for Class: ConfigurationTest (fr.istic.tests)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ConfigurationTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    83,3%
+  </span>
+  <span class="absValue">
+    (5/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    98,3%
+  </span>
+  <span class="absValue">
+    (58/59)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package fr.istic.tests;
+&nbsp;
+&nbsp;import com.sun.xml.internal.ws.wsdl.writer.document.Part;
+&nbsp;import fr.istic.Utils;
+&nbsp;import fr.istic.issaouad.impl.*;
+&nbsp;import fr.istic.nplouzeau.cartaylor.api.Category;
+&nbsp;import fr.istic.nplouzeau.cartaylor.api.Configuration;
+&nbsp;import fr.istic.nplouzeau.cartaylor.api.Configurator;
+&nbsp;import fr.istic.nplouzeau.cartaylor.api.PartType;
+&nbsp;import org.junit.After;
+&nbsp;import org.junit.Before;
+&nbsp;import org.junit.Test;
+&nbsp;import org.junit.jupiter.api.AfterEach;
+&nbsp;import org.junit.jupiter.api.BeforeAll;
+&nbsp;import org.junit.jupiter.api.BeforeEach;
+&nbsp;import org.junit.jupiter.api.DisplayName;
+&nbsp;
+&nbsp;import java.util.HashSet;
+&nbsp;import java.util.Set;
+&nbsp;
+&nbsp;import static org.junit.Assert.*;
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;public class ConfigurationTest {</b>
+&nbsp;
+&nbsp;    private  Configurator configurator;
+&nbsp;    private  Configuration configuration;
+&nbsp;
+&nbsp;     Set&lt;PartType&gt; engines;
+&nbsp;     Set&lt;PartType&gt; interiors;
+&nbsp;     Set&lt;PartType&gt; exteriors;
+&nbsp;     Set&lt;PartType&gt; transmissions;
+&nbsp;
+&nbsp;
+&nbsp;    @Before
+&nbsp;    public  void  init(){
+<b class="fc">&nbsp;        configurator = new ConfiguratorImpl();</b>
+<b class="fc">&nbsp;        configuration = configurator.getConfiguration();</b>
+<b class="fc">&nbsp;        engines =  (configurator.getVariants(new CategoryImpl(Utils.ENGINE) ));</b>
+<b class="fc">&nbsp;        interiors =  (configurator.getVariants(new CategoryImpl(Utils.INTERIOR)));</b>
+<b class="fc">&nbsp;        exteriors =  (configurator.getVariants(new CategoryImpl (Utils.EXTERIOR)));</b>
+<b class="fc">&nbsp;        transmissions =  (configurator.getVariants(new CategoryImpl(Utils.TRANSMISSION) ));</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @AfterEach
+&nbsp;    public void clear() {
+<b class="nc">&nbsp;        configuration.clear();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void isComplete(){
+<b class="fc">&nbsp;        assertFalse(configuration.isComplete());</b>
+<b class="fc">&nbsp;        configuration.selectPart(engines.iterator().next());</b>
+<b class="fc">&nbsp;        assertFalse(configuration.isComplete());</b>
+<b class="fc">&nbsp;        configuration.selectPart(interiors.iterator().next());</b>
+<b class="fc">&nbsp;        assertFalse(configuration.isComplete());</b>
+<b class="fc">&nbsp;        configuration.selectPart(exteriors.iterator().next());</b>
+<b class="fc">&nbsp;        assertFalse(configuration.isComplete());</b>
+<b class="fc">&nbsp;        configuration.selectPart(transmissions.iterator().next());</b>
+<b class="fc">&nbsp;        assertTrue(configuration.isComplete());</b>
+<b class="fc">&nbsp;        configuration.selectPart(transmissions.iterator().next());</b>
+<b class="fc">&nbsp;        assertTrue(configuration.isComplete());</b>
+<b class="fc">&nbsp;        configuration.clear();</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    /**
+&nbsp;     * test pour (xs --&gt; is, TC120 --&gt; EH120)
+&nbsp;     */
+&nbsp;    public void isValid1(){
+&nbsp;
+<b class="fc">&nbsp;        for(PartType t : transmissions){</b>
+<b class="fc">&nbsp;            if(t.getName().equals(&quot;TC120&quot;)  ){</b>
+<b class="fc">&nbsp;                configuration.selectPart(t);</b>
+&nbsp;            }
+<b class="fc">&nbsp;        }</b>
+<b class="fc">&nbsp;        for(PartType e : engines){</b>
+<b class="fc">&nbsp;            if(e.getName().equals(&quot;EH120&quot;)){</b>
+<b class="fc">&nbsp;                configuration.selectPart(e);</b>
+&nbsp;            }
+<b class="fc">&nbsp;        }</b>
+<b class="fc">&nbsp;        for(PartType x : exteriors){</b>
+<b class="fc">&nbsp;            if(x.getName().equals(&quot;XS&quot;)){</b>
+<b class="fc">&nbsp;                configuration.selectPart(x);</b>
+&nbsp;            }
+<b class="fc">&nbsp;        }</b>
+<b class="fc">&nbsp;        for(PartType i : interiors){</b>
+<b class="fc">&nbsp;            if(i.getName().equals(&quot;IS&quot;)){</b>
+<b class="fc">&nbsp;                configuration.selectPart(i);</b>
+&nbsp;            }
+<b class="fc">&nbsp;        }</b>
+&nbsp;
+<b class="fc">&nbsp;        assertTrue(configuration.isValid());</b>
+<b class="fc">&nbsp;        configuration.clear();</b>
+&nbsp;
+&nbsp;
+&nbsp;    }
+&nbsp;    @Test
+&nbsp;    public void isValid2(){
+<b class="fc">&nbsp;        for(PartType t : transmissions){</b>
+<b class="fc">&nbsp;            if(t.getName().equals(&quot;TA5&quot;)){</b>
+<b class="fc">&nbsp;                configuration.selectPart(t);</b>
+<b class="fc">&nbsp;                assertTrue(configuration.isValid());</b>
+&nbsp;            }
+<b class="fc">&nbsp;        }</b>
+<b class="fc">&nbsp;        for(PartType e : engines){</b>
+<b class="fc">&nbsp;            if(e.getName().equals(&quot;EG100&quot;)){</b>
+<b class="fc">&nbsp;                configuration.selectPart(e);</b>
+<b class="fc">&nbsp;                assertFalse(configuration.isValid());</b>
+&nbsp;            }
+<b class="fc">&nbsp;        }</b>
+<b class="fc">&nbsp;        configuration.clear();</b>
+&nbsp;
+<b class="fc">&nbsp;        for(PartType t : transmissions){</b>
+<b class="fc">&nbsp;            if(t.getName().equals(&quot;TSF7&quot;)){</b>
+<b class="fc">&nbsp;                configuration.selectPart(t);</b>
+<b class="fc">&nbsp;                assertTrue(configuration.isValid());</b>
+&nbsp;            }
+<b class="fc">&nbsp;        }</b>
+<b class="fc">&nbsp;        for(PartType e : engines){</b>
+<b class="fc">&nbsp;            if(e.getName().equals(&quot;EG100&quot;)||e.getName().equals(&quot;EG133&quot;)||e.getName().equals(&quot;ED110&quot;)){</b>
+<b class="fc">&nbsp;                configuration.selectPart(e);</b>
+<b class="fc">&nbsp;                assertFalse(configuration.isValid());</b>
+&nbsp;            }
+<b class="fc">&nbsp;        }</b>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-12-19 21:41</div>
+</div>
+</body>
+</html>

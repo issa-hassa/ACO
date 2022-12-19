@@ -1,0 +1,369 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > CompatibilityManagerTest</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">fr.istic.tests</a>
+</div>
+
+<h1>Coverage Summary for Class: CompatibilityManagerTest (fr.istic.tests)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">CompatibilityManagerTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (17/17)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (113/113)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package fr.istic.tests;
+&nbsp;
+&nbsp;import fr.istic.Utils;
+&nbsp;import fr.istic.issaouad.impl.*;
+&nbsp;import fr.istic.nplouzeau.cartaylor.api.CompatibilityManager;
+&nbsp;import org.junit.Before;
+&nbsp;import org.junit.Test;
+&nbsp;import org.junit.jupiter.api.BeforeAll;
+&nbsp;import org.junit.jupiter.api.BeforeEach;
+&nbsp;import org.junit.jupiter.api.DisplayName;
+&nbsp;
+&nbsp;import java.util.Arrays;
+&nbsp;import java.util.HashSet;
+&nbsp;
+&nbsp;import static org.junit.Assert.*;
+&nbsp;
+<b class="fc">&nbsp;public class CompatibilityManagerTest {</b>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    PartTypeImpl eg100 ;
+&nbsp;    PartTypeImpl eg133 ;
+&nbsp;    PartTypeImpl eg210 ;
+&nbsp;    PartTypeImpl ed110 ;
+&nbsp;    PartTypeImpl ed180 ;
+&nbsp;    PartTypeImpl eh120 ;
+&nbsp;
+&nbsp;    PartTypeImpl xc ;
+&nbsp;    PartTypeImpl xm;
+&nbsp;    PartTypeImpl xs;
+&nbsp;
+&nbsp;    PartTypeImpl in;
+&nbsp;    PartTypeImpl ih;
+&nbsp;    PartTypeImpl is;
+&nbsp;
+&nbsp;
+&nbsp;    PartTypeImpl tm5 ;
+&nbsp;    PartTypeImpl tm6 ;
+&nbsp;    PartTypeImpl ta5 ;
+&nbsp;    PartTypeImpl ts6 ;
+&nbsp;    PartTypeImpl tsf7 ;
+&nbsp;    PartTypeImpl tc120 ;
+&nbsp;
+<b class="fc">&nbsp;    CategoryImpl engine = new CategoryImpl(Utils.ENGINE);</b>
+<b class="fc">&nbsp;    CategoryImpl exterior = new CategoryImpl(Utils.EXTERIOR);</b>
+<b class="fc">&nbsp;    CategoryImpl interior = new CategoryImpl(Utils.INTERIOR);</b>
+<b class="fc">&nbsp;    CategoryImpl transmission = new CategoryImpl(Utils.TRANSMISSION);</b>
+&nbsp;
+<b class="fc">&nbsp;   CompatibilityManager cm = new ComptabilityManagerImpl();</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * reseting compatibilities
+&nbsp;     */
+&nbsp;    @Before
+&nbsp;    public void init(){
+<b class="fc">&nbsp;         eg100 = new PartTypeImpl(&quot;EG100&quot;,engine) ;</b>
+<b class="fc">&nbsp;         eg133 = new PartTypeImpl(&quot;EG133&quot;,engine);</b>
+<b class="fc">&nbsp;         eg210 = new PartTypeImpl(&quot;EG210&quot;,engine) ;</b>
+<b class="fc">&nbsp;         ed110 = new PartTypeImpl(&quot;EG110&quot;,engine) ;</b>
+<b class="fc">&nbsp;         ed180 = new PartTypeImpl(&quot;EG180&quot;,engine) ;</b>
+<b class="fc">&nbsp;         eh120 = new PartTypeImpl(&quot;EH120&quot;,engine) ;</b>
+&nbsp;
+<b class="fc">&nbsp;         xc = new PartTypeImpl(&quot;XC&quot;,exterior);</b>
+<b class="fc">&nbsp;         xm = new PartTypeImpl(&quot;XM&quot;,exterior);</b>
+<b class="fc">&nbsp;         xs = new PartTypeImpl(&quot;XS&quot;,exterior);</b>
+&nbsp;
+<b class="fc">&nbsp;         in = new PartTypeImpl(&quot;IN&quot;,interior);</b>
+<b class="fc">&nbsp;         ih = new PartTypeImpl(&quot;IH&quot;,interior);</b>
+<b class="fc">&nbsp;         is = new PartTypeImpl(&quot;IS&quot;,interior);</b>
+&nbsp;
+<b class="fc">&nbsp;         tm5 = new PartTypeImpl(&quot;TM5&quot;,transmission);</b>
+<b class="fc">&nbsp;         tm6 = new PartTypeImpl(&quot;TM5&quot;,transmission);</b>
+<b class="fc">&nbsp;         ta5 = new PartTypeImpl(&quot;TM5&quot;,transmission);</b>
+<b class="fc">&nbsp;         ts6 = new PartTypeImpl(&quot;TM5&quot;,transmission);</b>
+<b class="fc">&nbsp;         tsf7 = new PartTypeImpl(&quot;TM5&quot;,transmission);</b>
+<b class="fc">&nbsp;         tc120 = new PartTypeImpl(&quot;TM5&quot;,transmission);</b>
+&nbsp;
+<b class="fc">&nbsp;        cm.addRequirements(eh120,new HashSet&lt;&gt;(Arrays.asList(tc120)));</b>
+<b class="fc">&nbsp;        cm.addIncompatibilities(xc, new HashSet&lt;&gt;(Arrays.asList(eg210)));</b>
+<b class="fc">&nbsp;        cm.addIncompatibilities(xm, new HashSet&lt;&gt;(Arrays.asList(eg100)));</b>
+<b class="fc">&nbsp;        cm.addIncompatibilities(xs, new HashSet&lt;&gt;(Arrays.asList(eg100)));</b>
+<b class="fc">&nbsp;        cm.addRequirements(xs,new HashSet&lt;&gt;(Arrays.asList(is)));</b>
+&nbsp;
+<b class="fc">&nbsp;        cm.addRequirements(is,new HashSet&lt;&gt;(Arrays.asList(xs)));</b>
+<b class="fc">&nbsp;        cm.addIncompatibilities(is, new HashSet&lt;&gt;(Arrays.asList(eg100,tm5)));</b>
+&nbsp;
+<b class="fc">&nbsp;        cm.addIncompatibilities(ta5, new HashSet&lt;&gt;(Arrays.asList(eg100)));</b>
+<b class="fc">&nbsp;        cm.addIncompatibilities(tsf7, new HashSet&lt;&gt;(Arrays.asList(eg100,eg133,ed110)));</b>
+<b class="fc">&nbsp;        cm.addRequirements(tc120,new HashSet&lt;&gt;(Arrays.asList(eh120)));</b>
+&nbsp;
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @DisplayName(&quot;test de : addRequirements()&quot;)
+&nbsp;    @Test
+&nbsp;    public void addRequirementsTest(){
+<b class="fc">&nbsp;        assertTrue(cm.getRequirements(eg100).isEmpty());</b>
+<b class="fc">&nbsp;        assertTrue(cm.getRequirements(eg133).isEmpty());</b>
+<b class="fc">&nbsp;        assertTrue(cm.getRequirements(eg210).isEmpty());</b>
+<b class="fc">&nbsp;        assertTrue(cm.getRequirements(ed110).isEmpty());</b>
+<b class="fc">&nbsp;        assertTrue(cm.getRequirements(ed180).isEmpty());</b>
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        assertEquals(1,cm.getRequirements(eh120).size() );</b>
+<b class="fc">&nbsp;        assertTrue(cm.getRequirements(eh120).contains(tc120));</b>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        assertTrue(cm.getRequirements(tm5).isEmpty());</b>
+<b class="fc">&nbsp;        assertTrue(cm.getRequirements(tm6).isEmpty());</b>
+<b class="fc">&nbsp;        assertTrue(cm.getRequirements(ta5).isEmpty());</b>
+<b class="fc">&nbsp;        assertTrue(cm.getRequirements(ts6).isEmpty());</b>
+<b class="fc">&nbsp;        assertTrue(cm.getRequirements(tsf7).isEmpty());</b>
+&nbsp;
+<b class="fc">&nbsp;        assertTrue(cm.getRequirements(tc120).size() == 1</b>
+<b class="fc">&nbsp;                &amp;&amp; cm.getRequirements(tc120).contains(eh120));</b>
+&nbsp;
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        assertTrue(cm.getRequirements(xc).isEmpty());</b>
+<b class="fc">&nbsp;        assertTrue(cm.getRequirements(xm).isEmpty());</b>
+&nbsp;
+<b class="fc">&nbsp;        assertTrue(cm.getRequirements(xs).size() == 1</b>
+<b class="fc">&nbsp;                &amp;&amp; cm.getRequirements(xs).contains(is));</b>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        assertTrue(cm.getRequirements(in).isEmpty());</b>
+<b class="fc">&nbsp;        assertTrue(cm.getRequirements(ih).isEmpty());</b>
+&nbsp;
+<b class="fc">&nbsp;        assertTrue(cm.getRequirements(is).size() == 1</b>
+<b class="fc">&nbsp;                &amp;&amp; cm.getRequirements(is).contains(xs));</b>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @DisplayName(&quot;test de : addRequirements()&quot;)
+&nbsp;    @Test
+&nbsp;    public void addIncompatibilities(){
+<b class="fc">&nbsp;        assertTrue(cm.getIncompatibilities(eg100).isEmpty());</b>
+<b class="fc">&nbsp;        assertTrue(cm.getIncompatibilities(eg133).isEmpty());</b>
+<b class="fc">&nbsp;        assertTrue(cm.getIncompatibilities(eg210).isEmpty());</b>
+<b class="fc">&nbsp;        assertTrue(cm.getIncompatibilities(ed110).isEmpty());</b>
+<b class="fc">&nbsp;        assertTrue(cm.getIncompatibilities(ed180).isEmpty());</b>
+<b class="fc">&nbsp;        assertTrue(cm.getIncompatibilities(eh120).isEmpty());</b>
+<b class="fc">&nbsp;        assertTrue(cm.getIncompatibilities(tm5).isEmpty());</b>
+<b class="fc">&nbsp;        assertTrue(cm.getIncompatibilities(tm6).isEmpty());</b>
+&nbsp;
+<b class="fc">&nbsp;        assertTrue(cm.getIncompatibilities(ta5).size() ==1</b>
+<b class="fc">&nbsp;                &amp;&amp;  cm.getIncompatibilities(ta5).contains(eg100));</b>
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        assertTrue(cm.getIncompatibilities(ts6).isEmpty());</b>
+&nbsp;
+<b class="fc">&nbsp;        assertTrue(cm.getIncompatibilities(tsf7).size() == 3 &amp;&amp;</b>
+<b class="fc">&nbsp;                cm.getIncompatibilities(tsf7).containsAll(Arrays.asList(eg100,eg133,ed110)));</b>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        assertTrue(cm.getIncompatibilities(tc120).isEmpty());</b>
+&nbsp;
+<b class="fc">&nbsp;        assertTrue(cm.getIncompatibilities(xc).size() ==1</b>
+<b class="fc">&nbsp;                &amp;&amp;  cm.getIncompatibilities(xc).contains(eg210));</b>
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        assertTrue(cm.getIncompatibilities(xm).size() ==1</b>
+<b class="fc">&nbsp;                &amp;&amp;  cm.getIncompatibilities(xm).contains(eg100));</b>
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        assertTrue(cm.getIncompatibilities(xs).size() == 1</b>
+<b class="fc">&nbsp;                &amp;&amp; cm.getIncompatibilities(xs).contains(eg100));</b>
+&nbsp;
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        assertTrue(cm.getIncompatibilities(in).isEmpty());</b>
+<b class="fc">&nbsp;        assertTrue(cm.getIncompatibilities(ih).isEmpty());</b>
+&nbsp;
+<b class="fc">&nbsp;        assertTrue(cm.getIncompatibilities(is).size() == 2</b>
+<b class="fc">&nbsp;                &amp;&amp; cm.getIncompatibilities(is).containsAll(Arrays.asList(eg100,tm5)));</b>
+&nbsp;
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;   @DisplayName(&quot;test removeRequirement&quot;)
+&nbsp;   @Test
+&nbsp;    public void removeRequirementTest(){
+<b class="fc">&nbsp;       cm.removeRequirement(eh120, tc120);</b>
+<b class="fc">&nbsp;       cm.removeRequirement(xs,is);</b>
+<b class="fc">&nbsp;       cm.removeRequirement(tc120,eh120);</b>
+<b class="fc">&nbsp;       cm.removeRequirement(is,xs);</b>
+<b class="fc">&nbsp;    assertTrue(cm.getRequirements(eh120).isEmpty());</b>
+<b class="fc">&nbsp;    assertTrue(cm.getRequirements(xs).isEmpty());</b>
+<b class="fc">&nbsp;    assertTrue(cm.getRequirements(tc120).isEmpty());</b>
+<b class="fc">&nbsp;    assertTrue(cm.getRequirements(is).isEmpty());</b>
+<b class="fc">&nbsp;    assertFalse(cm.getRequirements(tc120).contains(eh120));</b>
+<b class="fc">&nbsp;    assertTrue(cm.getRequirements(tc120).size() == 0);</b>
+&nbsp;
+&nbsp;   }
+&nbsp;
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void testThrows(){
+<b class="fc">&nbsp;        assertThrows(RuntimeException.class,()-&gt;{</b>
+<b class="fc">&nbsp;            cm.addRequirements(ta5,new HashSet&lt;&gt;(Arrays.asList(eg100)));</b>
+&nbsp;        });
+<b class="fc">&nbsp;        assertThrows(RuntimeException.class,()-&gt;{</b>
+<b class="fc">&nbsp;            cm.addRequirements(tsf7,new HashSet&lt;&gt;(Arrays.asList(eg100,eg133,ed110)));</b>
+&nbsp;        });
+<b class="fc">&nbsp;        assertThrows(RuntimeException.class,()-&gt;{</b>
+<b class="fc">&nbsp;            cm.addRequirements(xc,new HashSet&lt;&gt;(Arrays.asList(eg210)));</b>
+&nbsp;        });
+&nbsp;
+<b class="fc">&nbsp;        assertThrows(RuntimeException.class,()-&gt;{</b>
+<b class="fc">&nbsp;            cm.addRequirements(xm,new HashSet&lt;&gt;(Arrays.asList(eg100)));</b>
+&nbsp;        });
+<b class="fc">&nbsp;        assertThrows(RuntimeException.class,()-&gt;{</b>
+<b class="fc">&nbsp;            cm.addRequirements(xs,new HashSet&lt;&gt;(Arrays.asList(eg100)));</b>
+&nbsp;        });
+<b class="fc">&nbsp;        assertThrows(RuntimeException.class,()-&gt;{</b>
+<b class="fc">&nbsp;            cm.addRequirements(ta5,new HashSet&lt;&gt;(Arrays.asList(eg100)));</b>
+&nbsp;        });
+<b class="fc">&nbsp;        assertThrows(RuntimeException.class,()-&gt;{</b>
+<b class="fc">&nbsp;            cm.addIncompatibilities(eh120,new HashSet&lt;&gt;(Arrays.asList(tc120)));</b>
+&nbsp;        });
+&nbsp;
+<b class="fc">&nbsp;        assertThrows(RuntimeException.class,()-&gt;{</b>
+<b class="fc">&nbsp;            cm.addIncompatibilities(tc120,new HashSet&lt;&gt;(Arrays.asList(eh120)));</b>
+&nbsp;        });
+&nbsp;
+<b class="fc">&nbsp;        assertThrows(RuntimeException.class,()-&gt;{</b>
+<b class="fc">&nbsp;            cm.addIncompatibilities(xs,new HashSet&lt;&gt;(Arrays.asList(is)));</b>
+&nbsp;        });
+&nbsp;
+<b class="fc">&nbsp;        assertThrows(RuntimeException.class,()-&gt;{</b>
+<b class="fc">&nbsp;            cm.addIncompatibilities(is,new HashSet&lt;&gt;(Arrays.asList(xs)));</b>
+&nbsp;        });
+<b class="fc">&nbsp;        assertThrows(RuntimeException.class,()-&gt;{</b>
+<b class="fc">&nbsp;            cm.addRequirements(is,new HashSet&lt;&gt;(Arrays.asList(eg100,tm5)));</b>
+&nbsp;        });
+<b class="fc">&nbsp;        assertThrows(RuntimeException.class, () -&gt; cm.removeRequirement(is, tc120));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-12-19 21:41</div>
+</div>
+</body>
+</html>
