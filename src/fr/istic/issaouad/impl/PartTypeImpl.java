@@ -2,6 +2,7 @@ package fr.istic.issaouad.impl;
 
 import fr.istic.nplouzeau.cartaylor.api.Category;
 import fr.istic.nplouzeau.cartaylor.api.PartType;
+import fr.istic.nplouzeau.cartaylor.api.PrintHtml;
 import org.omg.CORBA.Object;
 
 import java.lang.reflect.Constructor;
@@ -15,8 +16,10 @@ public class PartTypeImpl implements PartType {
 
 	private Class <? extends PartImpl> classRef;
 
+	public  PartImpl part;
 
 
+	
 	public PartTypeImpl(String name,Class <? extends PartImpl> classRef, Category category){
 		Objects.requireNonNull(name, " the name of the part can't be null");
 		Objects.requireNonNull(category, " the category of the part can't be null");
@@ -24,24 +27,40 @@ public class PartTypeImpl implements PartType {
 		this.category = category;
 		this.classRef = classRef;
 
-	}
-
-	public PartImpl newInstance(){
 		Constructor<? extends PartImpl> constructor;
 		try {
-			constructor = classRef.getConstructor();
-			return constructor.newInstance();
+			Class [] arguments = {PartType.class};
+			constructor = classRef.getConstructor(arguments);
+			part = constructor.newInstance(this);
+
 		}
 		catch (Exception e){
 			Logger.getGlobal().log(Level.SEVERE,"constructor call failed ",e);
 			System.exit(-1);
 		}
-		return null;
+
+
+		
+	}
+
+	public PartImpl newInstance(){
+		/*Constructor<? extends PartImpl> constructor;
+		try {
+			Class [] arguments = {PartType.class};
+		    constructor = classRef.getConstructor(arguments);
+			part = constructor.newInstance(this);
+			return part;
+		}
+		catch (Exception e){
+			Logger.getGlobal().log(Level.SEVERE,"constructor call failed ",e);
+			System.exit(-1);
+		}*/
+		return part;
 	}
 
 	@Override
 	public String getName() {
-
+		
 		return this.name;
 	}
 
@@ -50,7 +69,14 @@ public class PartTypeImpl implements PartType {
 		return this.category;
 	}
 
+	public Class<? extends PartImpl> getClassRef() {
+		return classRef;
+	}
 
+	@Override
+	public void accept(PrintHtml p) {
+		p.visitPartType(this);
+	}
 
 
 }
