@@ -16,7 +16,7 @@ public class CategoryImpl implements  Category {
 
 
 	@Override
-	public void accept(PrintHtml p) {
+	public void accept(Visitor p) {
 		p.visitCategory(this);
 	}
 

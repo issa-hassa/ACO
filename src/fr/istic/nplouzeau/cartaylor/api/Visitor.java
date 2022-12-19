@@ -1,6 +1,6 @@
 package fr.istic.nplouzeau.cartaylor.api;
 
-public interface PrintHtml {
+public interface Visitor {
 
     void visitCategory(Category c);
     void visitPart(Part p);

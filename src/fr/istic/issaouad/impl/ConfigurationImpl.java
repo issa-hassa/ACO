@@ -8,7 +8,7 @@ import fr.istic.Utils;
 import fr.istic.nplouzeau.cartaylor.api.Category;
 import fr.istic.nplouzeau.cartaylor.api.Configuration;
 import fr.istic.nplouzeau.cartaylor.api.PartType;
-import fr.istic.nplouzeau.cartaylor.api.PrintHtml;
+import fr.istic.nplouzeau.cartaylor.api.Visitor;
 
 public class ConfigurationImpl implements Configuration {
 	private ComptabilityManagerImpl cm ;
@@ -98,7 +98,7 @@ public class ConfigurationImpl implements Configuration {
 		this.selectedPartype.clear();
 	}
 	@Override
-	public void accept(PrintHtml p) {
+	public void accept(Visitor p) {
 		p.visitConfiguration(this);
 	}
 
