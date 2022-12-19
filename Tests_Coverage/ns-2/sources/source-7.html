@@ -1,0 +1,137 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > partExteriorTest</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">fr.istic.tests</a>
+</div>
+
+<h1>Coverage Summary for Class: partExteriorTest (fr.istic.tests)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">partExteriorTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (11/11)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package fr.istic.tests;
+&nbsp;
+&nbsp;import fr.istic.Utils;
+&nbsp;import fr.istic.issaouad.impl.*;
+&nbsp;import fr.istic.nplouzeau.cartaylor.api.Category;
+&nbsp;import fr.istic.nplouzeau.cartaylor.api.PartType;
+&nbsp;import org.junit.Test;
+&nbsp;
+&nbsp;import javax.swing.*;
+&nbsp;
+&nbsp;import java.util.Optional;
+&nbsp;
+&nbsp;import static org.junit.Assert.assertEquals;
+&nbsp;
+<b class="fc">&nbsp;public class partExteriorTest {</b>
+&nbsp;
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void init(){
+&nbsp;
+<b class="fc">&nbsp;        Category exterior = new CategoryImpl(&quot;Exterior&quot;);</b>
+<b class="fc">&nbsp;        PartType xc = new PartTypeImpl(&quot;XC&quot;, Exterior.XC.class,exterior);</b>
+<b class="fc">&nbsp;        PartType xm = new PartTypeImpl(&quot;XM&quot;,Exterior.XM.class,exterior);</b>
+<b class="fc">&nbsp;        PartType xs = new PartTypeImpl(&quot;XS&quot;,Exterior.XS.class,exterior);</b>
+&nbsp;
+<b class="fc">&nbsp;        PartImpl XCInstance = xc.newInstance();</b>
+<b class="fc">&nbsp;        PartImpl XMInstance = xm.newInstance();</b>
+<b class="fc">&nbsp;        PartImpl XSInstance = xs.newInstance();</b>
+&nbsp;
+<b class="fc">&nbsp;        assertEquals(XCInstance.getProperty(Utils.PAINT), Optional.of(Utils.Color.CLASSIC.name()) );</b>
+<b class="fc">&nbsp;        assertEquals(XMInstance.getProperty(Utils.PAINT), Optional.of(Utils.Color.METALLIC.name()) );</b>
+<b class="fc">&nbsp;        assertEquals(XSInstance.getProperty(Utils.PAINT).get(), Utils.Color.RED.name() );</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-12-19 21:38</div>
+</div>
+</body>
+</html>

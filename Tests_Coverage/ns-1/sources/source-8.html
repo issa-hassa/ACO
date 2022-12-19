@@ -1,0 +1,286 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > PartImpl</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">fr.istic.issaouad.impl</a>
+</div>
+
+<h1>Coverage Summary for Class: PartImpl (fr.istic.issaouad.impl)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PartImpl</td>
+<td class="coverageStat">
+  <span class="percent">
+    66,7%
+  </span>
+  <span class="absValue">
+    (6/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (10/20)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">PartImpl$Property</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    70%
+  </span>
+  <span class="absValue">
+    (7/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    58,3%
+  </span>
+  <span class="absValue">
+    (14/24)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package fr.istic.issaouad.impl;
+&nbsp;
+&nbsp;import fr.istic.nplouzeau.cartaylor.api.Category;
+&nbsp;import fr.istic.nplouzeau.cartaylor.api.Part;
+&nbsp;import fr.istic.nplouzeau.cartaylor.api.PartType;
+&nbsp;import fr.istic.nplouzeau.cartaylor.api.Visitor;
+&nbsp;
+&nbsp;import java.util.*;
+&nbsp;import java.util.function.Consumer;
+&nbsp;import java.util.function.Supplier;
+&nbsp;
+&nbsp;public class PartImpl implements Part {
+&nbsp;    private PartType type;
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;    public PartImpl(PartType type) {</b>
+<b class="fc">&nbsp;        this.type = type;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Get category of the part
+&nbsp;     *
+&nbsp;     * @return the category
+&nbsp;     */
+&nbsp;    @Override
+&nbsp;    public Category getCategory() {
+<b class="fc">&nbsp;        return this.type.getCategory();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Get partType
+&nbsp;     *
+&nbsp;     * @return the partType
+&nbsp;     */
+&nbsp;    @Override
+&nbsp;    public PartType getType() {
+<b class="nc">&nbsp;        return type;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    private class Property {
+&nbsp;        /** Getter for property*/
+&nbsp;        public final Supplier&lt;String&gt; getter;
+&nbsp;        /** Setter for property*/
+&nbsp;        public final Consumer&lt;String&gt; setter;
+&nbsp;        /** Possible values for property*/
+&nbsp;        public final Set&lt;String&gt; possibleValues;
+&nbsp;
+&nbsp;        /**
+&nbsp;         * Constructor for Property
+&nbsp;         * @param getter, the getter for the property
+&nbsp;         * @param setter, the setter for the property
+&nbsp;         * @param possibleValues, available values for this property
+&nbsp;         */
+<b class="fc">&nbsp;        Property(Supplier&lt;String&gt; getter, Consumer&lt;String&gt; setter, Set&lt;String&gt; possibleValues) {</b>
+<b class="fc">&nbsp;            this.getter = getter;</b>
+<b class="fc">&nbsp;            this.setter = setter;</b>
+<b class="fc">&nbsp;            this.possibleValues = possibleValues;</b>
+&nbsp;
+&nbsp;        }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    }
+<b class="fc">&nbsp;    private final Map&lt;String, Property&gt; properties = new HashMap&lt;&gt;();</b>
+&nbsp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Add a property
+&nbsp;     * @param name, name of the property
+&nbsp;     * @param getter, getter method to get the property
+&nbsp;     * @param setter, setter method to change the property
+&nbsp;     * @param possibleValues, set of possible values
+&nbsp;     */
+&nbsp;    protected void addProperty(String name, Supplier&lt;String&gt; getter, Consumer&lt;String&gt; setter,
+&nbsp;                               Set&lt;String&gt; possibleValues) {
+<b class="fc">&nbsp;        properties.put(name, new Property(getter, setter, possibleValues));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns an immutable set of the property names supported by the property manager.
+&nbsp;     *
+&nbsp;     * @return the name of the properties
+&nbsp;     */
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public Set&lt;String&gt; getPropertyNames() {
+<b class="fc">&nbsp;        return Collections.unmodifiableSet(properties.keySet());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns the immutable set of discrete string values for a given property.
+&nbsp;     * For properties that have a non explicit set of possible values (eg double converted to strings),
+&nbsp;     * or for a non existing property name, returns an empty set.
+&nbsp;     *
+&nbsp;     * @param propertyName a non-null string reference
+&nbsp;     * @return an immutable set (see above)
+&nbsp;     */
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public Set&lt;String&gt; getAvailablePropertyValues(String propertyName) {
+<b class="nc">&nbsp;        if (properties.containsKey(propertyName)) {</b>
+<b class="nc">&nbsp;            return Collections.unmodifiableSet(properties.get(propertyName).possibleValues);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        return Collections.emptySet();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns the optional value of a property.
+&nbsp;     * If the object does not support that property then an empty optional is returned.
+&nbsp;     *
+&nbsp;     * @param propertyName the property to read
+&nbsp;     * @return the property if available, else an empty optional
+&nbsp;     */
+&nbsp;    @Override
+&nbsp;    public Optional&lt;String&gt; getProperty(String propertyName) {
+<b class="fc">&nbsp;        Objects.requireNonNull(propertyName);</b>
+&nbsp;
+<b class="fc">&nbsp;        if (properties.containsKey(propertyName)) {</b>
+<b class="fc">&nbsp;            return Optional.of(properties.get(propertyName).getter.get());</b>
+&nbsp;        }
+<b class="nc">&nbsp;        return Optional.empty();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Sets the value of a given property.
+&nbsp;     * If there is not such property, or if it not writable, or if the value is invalid
+&nbsp;     * then an IllegalArgumentException is thrown.
+&nbsp;     *
+&nbsp;     * @param propertyName
+&nbsp;     * @param propertyValue
+&nbsp;     * @throws IllegalArgumentException (see above)
+&nbsp;     */
+&nbsp;    @Override
+&nbsp;    public void setProperty(String propertyName, String propertyValue) {
+<b class="nc">&nbsp;        Objects.requireNonNull(propertyName);</b>
+<b class="nc">&nbsp;        Objects.requireNonNull(propertyValue);</b>
+&nbsp;
+<b class="nc">&nbsp;        if ((properties.containsKey(propertyName)) &amp;&amp; (properties.get(propertyName).setter != null)) {</b>
+<b class="nc">&nbsp;            properties.get(propertyName).setter.accept(propertyValue);</b>
+&nbsp;        } else {
+<b class="nc">&nbsp;            throw new IllegalArgumentException(&quot;bad property name or value: &quot; + propertyName);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void accept(Visitor p) {
+<b class="fc">&nbsp;        p.visitPart(this);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-12-19 21:38</div>
+</div>
+</body>
+</html>

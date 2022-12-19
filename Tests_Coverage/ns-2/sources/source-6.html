@@ -1,0 +1,199 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > PrintHtmlTest</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">fr.istic.tests</a>
+</div>
+
+<h1>Coverage Summary for Class: PrintHtmlTest (fr.istic.tests)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PrintHtmlTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (30/30)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package fr.istic.tests;
+&nbsp;
+&nbsp;import com.sun.org.apache.xerces.internal.impl.io.UTF8Reader;
+&nbsp;import fr.istic.Utils;
+&nbsp;import fr.istic.issaouad.impl.CategoryImpl;
+&nbsp;import fr.istic.issaouad.impl.ConfiguratorImpl;
+&nbsp;import fr.istic.issaouad.impl.PrintHtml;
+&nbsp;import fr.istic.nplouzeau.cartaylor.api.Configuration;
+&nbsp;import fr.istic.nplouzeau.cartaylor.api.PartType;
+&nbsp;import org.junit.Test;
+&nbsp;import sun.misc.IOUtils;
+&nbsp;
+&nbsp;import java.io.*;
+&nbsp;import java.util.Set;
+&nbsp;
+&nbsp;import static org.junit.Assert.*;
+&nbsp;
+<b class="fc">&nbsp;public class PrintHtmlTest {</b>
+&nbsp;    @Test
+&nbsp;    public void init() throws IOException {
+<b class="fc">&nbsp;    ConfiguratorImpl configurator = new ConfiguratorImpl();</b>
+<b class="fc">&nbsp;    Configuration configuration = configurator.getConfiguration();</b>
+<b class="fc">&nbsp;    configurator = new ConfiguratorImpl();</b>
+<b class="fc">&nbsp;    configuration = configurator.getConfiguration();</b>
+<b class="fc">&nbsp;    Set&lt;PartType&gt; engines =  (configurator.getVariants(new CategoryImpl(Utils.ENGINE)));</b>
+<b class="fc">&nbsp;    Set&lt;PartType&gt;  interiors =  (configurator.getVariants( new CategoryImpl(Utils.INTERIOR)));</b>
+<b class="fc">&nbsp;    Set&lt;PartType&gt; exteriors =  (configurator.getVariants( new CategoryImpl(Utils.EXTERIOR)));</b>
+<b class="fc">&nbsp;    Set&lt;PartType&gt; transmissions =  (configurator.getVariants( new CategoryImpl(Utils.TRANSMISSION)));</b>
+<b class="fc">&nbsp;        for(PartType p : engines){</b>
+<b class="fc">&nbsp;        if(p.getName().equals(&quot;ED180&quot;)) configuration.selectPart(p);</b>
+<b class="fc">&nbsp;    }</b>
+<b class="fc">&nbsp;        for(PartType p : interiors){</b>
+<b class="fc">&nbsp;        if(p.getName().equals(&quot;IN&quot;)) configuration.selectPart(p);</b>
+<b class="fc">&nbsp;    }</b>
+<b class="fc">&nbsp;        for(PartType p : exteriors){</b>
+<b class="fc">&nbsp;        if(p.getName().equals(&quot;XS&quot;)) configuration.selectPart(p);</b>
+<b class="fc">&nbsp;    }</b>
+<b class="fc">&nbsp;        for(PartType p : exteriors){</b>
+<b class="fc">&nbsp;        if(p.getName().equals(&quot;TM5&quot;)) configuration.selectPart(p);</b>
+<b class="fc">&nbsp;    }</b>
+<b class="fc">&nbsp;        System.out.println(configuration.getSelectedParts().size());</b>
+&nbsp;
+&nbsp;        // Creates a FileOutputStream
+<b class="fc">&nbsp;        FileOutputStream file = new FileOutputStream(&quot;fichier&quot;);</b>
+&nbsp;
+&nbsp;        // Creates a PrintStream
+<b class="fc">&nbsp;        PrintStream output = new PrintStream(file);</b>
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        PrintHtml html = new PrintHtml(output, configuration);</b>
+<b class="fc">&nbsp;        html.printConfiguration();</b>
+&nbsp;
+<b class="fc">&nbsp;        String expectedOutPut =  &quot;&lt;!DOCTYPE html&gt;\n&quot; +</b>
+&nbsp;                &quot;&lt;html lang=\&quot;en\&quot;&gt;\n&quot; +
+&nbsp;                &quot;&lt;head&gt;\n&quot; +
+&nbsp;                &quot;    &lt;meta charset=\&quot;UTF-8\&quot;&gt;\n&quot; +
+&nbsp;                &quot;    &lt;meta name=\&quot;viewport\&quot; content=\&quot;width=device-width, initial-scale=1\&quot;&gt;\n&quot; +
+&nbsp;                &quot;    &lt;title&gt;Projet ACO : CARS TAYLOR&lt;/title&gt;\n&quot; +
+&nbsp;                &quot;\n&quot; +
+&nbsp;                &quot;&lt;/head&gt;\n&quot; +
+&nbsp;                &quot;&lt;body&gt;\n&quot; +
+&nbsp;                &quot;&lt;h1&gt; Configuration :  &lt;/h1&gt;\n&quot; +
+&nbsp;                &quot;&lt;h2&gt;ED180&lt;/h2&gt;\n&quot; +
+&nbsp;                &quot;&lt;h3&gt;\n&quot; +
+&nbsp;                &quot;Categorie : Engine\n&quot; +
+&nbsp;                &quot;&lt;/h3&gt;\n&quot; +
+&nbsp;                &quot;&lt;ul&gt;\n&quot; +
+&nbsp;                &quot;&lt;li&gt;\n&quot; +
+&nbsp;                &quot;power : 180kw&lt;/li&gt;\n&quot; +
+&nbsp;                &quot;&lt;li&gt;\n&quot; +
+&nbsp;                &quot;type : DIESEL&lt;/li&gt;\n&quot; +
+&nbsp;                &quot;&lt;/ul&gt;\n&quot; +
+&nbsp;                &quot;&lt;h2&gt;IN&lt;/h2&gt;\n&quot; +
+&nbsp;                &quot;&lt;h3&gt;\n&quot; +
+&nbsp;                &quot;Categorie : Interior\n&quot; +
+&nbsp;                &quot;&lt;/h3&gt;\n&quot; +
+&nbsp;                &quot;&lt;ul&gt;\n&quot; +
+&nbsp;                &quot;&lt;li&gt;\n&quot; +
+&nbsp;                &quot;quality : STANDARD&lt;/li&gt;\n&quot; +
+&nbsp;                &quot;&lt;/ul&gt;\n&quot; +
+&nbsp;                &quot;&lt;h2&gt;XS&lt;/h2&gt;\n&quot; +
+&nbsp;                &quot;&lt;h3&gt;\n&quot; +
+&nbsp;                &quot;Categorie : Exterior\n&quot; +
+&nbsp;                &quot;&lt;/h3&gt;\n&quot; +
+&nbsp;                &quot;&lt;ul&gt;\n&quot; +
+&nbsp;                &quot;&lt;li&gt;\n&quot; +
+&nbsp;                &quot;paint : RED&lt;/li&gt;\n&quot; +
+&nbsp;                &quot;&lt;/ul&gt;\n&quot; +
+&nbsp;                &quot;&lt;/body&gt;\n&quot; +
+&nbsp;                &quot;&lt;/html&gt;&quot;;
+&nbsp;
+<b class="fc">&nbsp;        PrintStream expected = new PrintStream(&quot;expected&quot;);</b>
+<b class="fc">&nbsp;        expected.write(expectedOutPut.getBytes());</b>
+<b class="fc">&nbsp;        assertEquals(expected.toString(), expected.toString());</b>
+&nbsp;}
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-12-19 21:38</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,140 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > PartTestTransmission</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">fr.istic.tests</a>
+</div>
+
+<h1>Coverage Summary for Class: PartTestTransmission (fr.istic.tests)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PartTestTransmission</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (18/18)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package fr.istic.tests;
+&nbsp;
+&nbsp;import fr.istic.Utils;
+&nbsp;import fr.istic.issaouad.impl.*;
+&nbsp;import fr.istic.nplouzeau.cartaylor.api.Category;
+&nbsp;import fr.istic.nplouzeau.cartaylor.api.PartType;
+&nbsp;import org.junit.Test;
+&nbsp;
+&nbsp;import static org.junit.Assert.assertEquals;
+&nbsp;
+<b class="fc">&nbsp;public class PartTestTransmission {</b>
+&nbsp;
+&nbsp;        @Test
+&nbsp;        public void init(){
+<b class="fc">&nbsp;    CategoryImpl transmission = new CategoryImpl(&quot;Transmission&quot;);</b>
+<b class="fc">&nbsp;    PartType tm5 = new PartTypeImpl(&quot;TM5&quot;, Transmission.TM5.class,transmission);</b>
+<b class="fc">&nbsp;    PartType tm6 = new PartTypeImpl(&quot;TM6&quot;,Transmission.TM6.class,transmission);</b>
+<b class="fc">&nbsp;    PartType ta5 = new PartTypeImpl(&quot;TA5&quot;,Transmission.TA5.class,transmission);</b>
+<b class="fc">&nbsp;    PartType ts6 = new PartTypeImpl(&quot;TS6&quot;,Transmission.TS6.class,transmission);</b>
+<b class="fc">&nbsp;    PartType tsf7 = new PartTypeImpl(&quot;TSF7&quot;,Transmission.TSF7.class,transmission);</b>
+<b class="fc">&nbsp;    PartType tc120 = new PartTypeImpl(&quot;TC120&quot;,Transmission.TC120.class,transmission);</b>
+&nbsp;
+<b class="fc">&nbsp;            PartImpl tm5Instance = tm5.newInstance();</b>
+<b class="fc">&nbsp;            PartImpl tm6Instance = tm6.newInstance();</b>
+<b class="fc">&nbsp;            PartImpl ta5Instance = ta5.newInstance();</b>
+<b class="fc">&nbsp;            PartImpl ts6Instance = ts6.newInstance();</b>
+<b class="fc">&nbsp;            PartImpl tsf7Instance = tsf7.newInstance();</b>
+&nbsp;
+<b class="fc">&nbsp;            assertEquals(tm5Instance.getProperty(Utils.TRANSMISSION_SPEED).get(), Utils.G_5);</b>
+<b class="fc">&nbsp;            assertEquals(tm6Instance.getProperty(Utils.TRANSMISSION_SPEED).get(), Utils.G_6);</b>
+<b class="fc">&nbsp;            assertEquals(ta5Instance.getProperty(Utils.TRANSMISSION_SPEED).get(), Utils.G_5);</b>
+<b class="fc">&nbsp;            assertEquals(ts6Instance.getProperty(Utils.TRANSMISSION_SPEED).get(), Utils.G_6);</b>
+<b class="fc">&nbsp;            assertEquals(tsf7Instance.getProperty(Utils.TRANSMISSION_SPEED).get(), Utils.G_7);</b>
+&nbsp;
+&nbsp;
+&nbsp;}
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-12-19 21:38</div>
+</div>
+</body>
+</html>

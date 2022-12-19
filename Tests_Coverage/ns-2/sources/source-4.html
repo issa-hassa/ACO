@@ -1,0 +1,145 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > PartTestEngine</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">fr.istic.tests</a>
+</div>
+
+<h1>Coverage Summary for Class: PartTestEngine (fr.istic.tests)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PartTestEngine</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (20/20)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package fr.istic.tests;
+&nbsp;
+&nbsp;import fr.istic.Utils;
+&nbsp;import fr.istic.issaouad.impl.CategoryImpl;
+&nbsp;import fr.istic.issaouad.impl.Engine;
+&nbsp;import fr.istic.issaouad.impl.PartImpl;
+&nbsp;import fr.istic.issaouad.impl.PartTypeImpl;
+&nbsp;import fr.istic.nplouzeau.cartaylor.api.Category;
+&nbsp;import fr.istic.nplouzeau.cartaylor.api.PartType;
+&nbsp;import org.junit.Test;
+&nbsp;
+&nbsp;import static org.junit.Assert.assertEquals;
+&nbsp;
+<b class="fc">&nbsp;public class PartTestEngine {</b>
+&nbsp;
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void propertiesTest(){
+<b class="fc">&nbsp;        Category engine  = new CategoryImpl(&quot;Engine&quot;);</b>
+<b class="fc">&nbsp;        PartType eg100 = new PartTypeImpl(&quot;EG100&quot;, Engine.EG100.class,engine);</b>
+<b class="fc">&nbsp;        PartType eg133 = new PartTypeImpl(&quot;EG133&quot;,Engine.EG133.class,engine);</b>
+<b class="fc">&nbsp;        PartType eg210 = new PartTypeImpl(&quot;EG210&quot;,Engine.EG210.class,engine);</b>
+<b class="fc">&nbsp;        PartType ed110 = new PartTypeImpl(&quot;ED110&quot;,Engine.ED110.class,engine);</b>
+<b class="fc">&nbsp;        PartType ed180 = new PartTypeImpl(&quot;ED180&quot;,Engine.ED180.class,engine);</b>
+<b class="fc">&nbsp;        PartType eh120 = new PartTypeImpl(&quot;EH120&quot;,Engine.EH120.class,engine);</b>
+&nbsp;
+<b class="fc">&nbsp;        PartImpl eg100Instance = eg100.newInstance();</b>
+<b class="fc">&nbsp;        PartImpl eg133Instance = eg133.newInstance();</b>
+<b class="fc">&nbsp;        PartImpl eg210Instance = eg210.newInstance();</b>
+<b class="fc">&nbsp;        PartImpl ed110Instance = ed110.newInstance();</b>
+<b class="fc">&nbsp;        PartImpl ed180Instance = ed180.newInstance();</b>
+<b class="fc">&nbsp;        PartImpl eh120Instance = eh120.newInstance();</b>
+&nbsp;
+<b class="fc">&nbsp;        assertEquals(eg100Instance.getProperty(Utils.POWER).get(), Utils.KW_100);</b>
+<b class="fc">&nbsp;        assertEquals(eg133Instance.getProperty(Utils.POWER).get(), Utils.KW_133);</b>
+<b class="fc">&nbsp;        assertEquals(eg210Instance.getProperty(Utils.POWER).get(), Utils.KW_210);</b>
+<b class="fc">&nbsp;        assertEquals(ed110Instance.getProperty(Utils.POWER).get(), Utils.KW_110);</b>
+<b class="fc">&nbsp;        assertEquals(ed180Instance.getProperty(Utils.POWER).get(), Utils.KW_180);</b>
+<b class="fc">&nbsp;        assertEquals(eh120Instance.getProperty(Utils.POWER).get(), Utils.KW_120);</b>
+&nbsp;
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-12-19 21:38</div>
+</div>
+</body>
+</html>

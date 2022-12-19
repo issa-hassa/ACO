@@ -1,0 +1,234 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Interior</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">fr.istic.issaouad.impl</a>
+</div>
+
+<h1>Coverage Summary for Class: Interior (fr.istic.issaouad.impl)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Interior</td>
+<td class="coverageStat">
+  <span class="percent">
+    66,7%
+  </span>
+  <span class="absValue">
+    (2/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    40%
+  </span>
+  <span class="absValue">
+    (2/5)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Interior$IH</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">Interior$IN</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">Interior$IS</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    83,3%
+  </span>
+  <span class="absValue">
+    (5/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    82,4%
+  </span>
+  <span class="absValue">
+    (14/17)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package fr.istic.issaouad.impl;
+&nbsp;
+&nbsp;
+&nbsp;import fr.istic.Utils;
+&nbsp;import fr.istic.nplouzeau.cartaylor.api.PartType;
+&nbsp;
+&nbsp;import java.util.Arrays;
+&nbsp;import java.util.HashSet;
+&nbsp;
+&nbsp;public class Interior extends PartImpl{
+&nbsp;	Utils.Quality quality;
+&nbsp;	public Interior(PartType type) {
+<b class="fc">&nbsp;		super(type);</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public String getQuality() {
+<b class="fc">&nbsp;		return quality.name();</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public void setQuality(String quality) {
+<b class="nc">&nbsp;		if(!this.getAvailablePropertyValues(Utils.QUALITY).contains(quality)){</b>
+<b class="nc">&nbsp;			throw new IllegalArgumentException(quality + &quot;is not a possible value for quality propriety&quot;);</b>
+&nbsp;		}
+<b class="nc">&nbsp;		this.quality.valueOf(quality);</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public static   class IN extends Interior{
+&nbsp;
+&nbsp;		public IN(PartType type) {
+<b class="fc">&nbsp;			super(type);</b>
+<b class="fc">&nbsp;			this.quality = Utils.Quality.STANDARD;</b>
+<b class="fc">&nbsp;			addProperty(</b>
+&nbsp;					Utils.QUALITY,
+&nbsp;					this :: getQuality,
+&nbsp;					this :: setQuality,
+<b class="fc">&nbsp;					new HashSet&lt;&gt;(Arrays.asList(Utils.Quality.STANDARD.name()))</b>
+&nbsp;			);
+&nbsp;		}
+&nbsp;	}
+&nbsp;
+&nbsp;	public static class IH extends Interior{
+&nbsp;
+&nbsp;		public IH(PartType type) {
+<b class="fc">&nbsp;			super(type);</b>
+<b class="fc">&nbsp;			this.quality = Utils.Quality.HIGH;</b>
+<b class="fc">&nbsp;			addProperty(</b>
+&nbsp;					Utils.QUALITY,
+&nbsp;					this :: getQuality,
+&nbsp;					this :: setQuality,
+<b class="fc">&nbsp;					new HashSet&lt;&gt;(Arrays.asList(Utils.Quality.HIGH.name()))</b>
+&nbsp;			);
+&nbsp;		}
+&nbsp;	}
+&nbsp;	public static class IS extends Interior{
+&nbsp;
+&nbsp;		public IS(PartType type) {
+<b class="fc">&nbsp;			super(type);</b>
+<b class="fc">&nbsp;			this.quality = Utils.Quality.SPORT;</b>
+<b class="fc">&nbsp;			addProperty(</b>
+&nbsp;					Utils.QUALITY,
+&nbsp;					this :: getQuality,
+&nbsp;					this :: setQuality,
+<b class="fc">&nbsp;					new HashSet&lt;&gt;(Arrays.asList(Utils.Quality.SPORT.name()))</b>
+&nbsp;			);
+&nbsp;		}
+&nbsp;	}
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-12-19 21:38</div>
+</div>
+</body>
+</html>

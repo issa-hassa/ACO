@@ -1,0 +1,428 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Transmission</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">fr.istic.issaouad.impl</a>
+</div>
+
+<h1>Coverage Summary for Class: Transmission (fr.istic.issaouad.impl)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Transmission</td>
+<td class="coverageStat">
+  <span class="percent">
+    22,2%
+  </span>
+  <span class="absValue">
+    (2/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    11,8%
+  </span>
+  <span class="absValue">
+    (2/17)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Transmission$TA5</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/7)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">Transmission$TC120</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/7)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">Transmission$TM5</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/7)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">Transmission$TM6</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/7)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">Transmission$TS6</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/7)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">Transmission$TSF7</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (10/10)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    53,3%
+  </span>
+  <span class="absValue">
+    (8/15)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    75,8%
+  </span>
+  <span class="absValue">
+    (47/62)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package fr.istic.issaouad.impl;
+&nbsp;
+&nbsp;
+&nbsp;import fr.istic.Utils;
+&nbsp;import fr.istic.nplouzeau.cartaylor.api.PartType;
+&nbsp;
+&nbsp;import java.util.Arrays;
+&nbsp;import java.util.HashSet;
+&nbsp;
+&nbsp;public class Transmission extends PartImpl {
+&nbsp;	Utils.Transmission transmission;
+&nbsp;	String speed ;
+&nbsp;	String nbWheels;
+&nbsp;
+&nbsp;	String maxPower;
+&nbsp;	public Transmission(PartType type) {
+<b class="fc">&nbsp;		super(type);</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public String getTransmission() {
+<b class="nc">&nbsp;		return transmission.name();</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public void setTransmission(String transmission) {
+<b class="nc">&nbsp;		if(!this.getAvailablePropertyValues(Utils.TRANSMISSION_TYPE).contains(transmission)){</b>
+<b class="nc">&nbsp;			throw new IllegalArgumentException(transmission + &quot; is not a possbile value of transmssion type propriety&quot;);</b>
+&nbsp;		}
+<b class="nc">&nbsp;		this.transmission.valueOf(transmission);</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public String getSpeed() {
+<b class="fc">&nbsp;		return speed;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public void setSpeed(String speed) {
+<b class="nc">&nbsp;		if(!this.getAvailablePropertyValues(Utils.TRANSMISSION_SPEED).contains(speed)){</b>
+<b class="nc">&nbsp;			throw new IllegalArgumentException(speed  + &quot;is not a possbile value of transmssion speed propriety&quot;);</b>
+&nbsp;		}
+<b class="nc">&nbsp;		this.speed = speed;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public String getNbWheels() {
+<b class="nc">&nbsp;		return nbWheels;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public void setNbWheels(String nbWheels) {
+<b class="nc">&nbsp;		if(this.getAvailablePropertyValues(Utils.WHEEL).contains(nbWheels)){</b>
+<b class="nc">&nbsp;			throw new IllegalArgumentException(nbWheels + &quot;is not a possbile value of transmssion number wheels propriety  &quot;);</b>
+&nbsp;		}
+<b class="nc">&nbsp;		this.nbWheels = nbWheels;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public String getMaxPower() {
+&nbsp;
+<b class="nc">&nbsp;		return maxPower;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public void setMaxPower(String maxPower) {
+<b class="nc">&nbsp;		if(this.getAvailablePropertyValues(Utils.MAX_POWER).contains(maxPower)){</b>
+<b class="nc">&nbsp;			throw new IllegalArgumentException(maxPower + &quot;is not a possbile value of transmssion max power propriety  &quot;);</b>
+&nbsp;		}
+<b class="nc">&nbsp;		this.maxPower = maxPower;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public static class TM5 extends Transmission {
+&nbsp;
+&nbsp;		public TM5(PartType type) {
+<b class="fc">&nbsp;			super(type);</b>
+<b class="fc">&nbsp;			transmission  = Utils.Transmission.MANUEL;</b>
+<b class="fc">&nbsp;			addProperty(</b>
+&nbsp;					Utils.TRANSMISSION_SPEED,
+&nbsp;					this :: getSpeed,
+&nbsp;					this :: setSpeed,
+<b class="fc">&nbsp;					new HashSet&lt;&gt;(Arrays.asList(Utils.G_5))</b>
+&nbsp;					);
+<b class="fc">&nbsp;			this.speed = Utils.G_5;</b>
+<b class="fc">&nbsp;			addProperty(</b>
+&nbsp;					Utils.TRANSMISSION_TYPE,
+&nbsp;					this :: getTransmission,
+&nbsp;					this :: setTransmission,
+<b class="fc">&nbsp;					new HashSet&lt;&gt;(Arrays.asList(Utils.Transmission.MANUEL.name()))</b>
+&nbsp;
+&nbsp;			);
+&nbsp;
+&nbsp;		}
+&nbsp;	}
+&nbsp;	public static class TM6 extends Transmission {
+&nbsp;
+&nbsp;		public TM6(PartType type) {
+<b class="fc">&nbsp;			super(type);</b>
+<b class="fc">&nbsp;			transmission  = Utils.Transmission.MANUEL;</b>
+<b class="fc">&nbsp;			addProperty(</b>
+&nbsp;					Utils.TRANSMISSION_SPEED,
+&nbsp;					this :: getSpeed,
+&nbsp;					this :: setSpeed,
+<b class="fc">&nbsp;					new HashSet&lt;&gt;(Arrays.asList(Utils.G_6))</b>
+&nbsp;			);
+<b class="fc">&nbsp;			this.speed = Utils.G_6;</b>
+<b class="fc">&nbsp;			addProperty(</b>
+&nbsp;					Utils.TRANSMISSION_TYPE,
+&nbsp;					this :: getTransmission,
+&nbsp;					this :: setTransmission,
+<b class="fc">&nbsp;					new HashSet&lt;&gt;(Arrays.asList(Utils.Transmission.MANUEL.name()))</b>
+&nbsp;
+&nbsp;			);
+&nbsp;
+&nbsp;		}
+&nbsp;	}
+&nbsp;	public static class TA5 extends Transmission {
+&nbsp;
+&nbsp;		public TA5(PartType type) {
+<b class="fc">&nbsp;			super(type);</b>
+<b class="fc">&nbsp;			transmission  = Utils.Transmission.AUTOMATIC;</b>
+<b class="fc">&nbsp;			addProperty(</b>
+&nbsp;					Utils.TRANSMISSION_SPEED,
+&nbsp;					this :: getSpeed,
+&nbsp;					this :: setSpeed,
+<b class="fc">&nbsp;					new HashSet&lt;&gt;(Arrays.asList(Utils.G_5))</b>
+&nbsp;			);
+<b class="fc">&nbsp;			this.speed = Utils.G_5;</b>
+<b class="fc">&nbsp;			addProperty(</b>
+&nbsp;					Utils.TRANSMISSION_TYPE,
+&nbsp;					this :: getTransmission,
+&nbsp;					this :: setTransmission,
+<b class="fc">&nbsp;					new HashSet&lt;&gt;(Arrays.asList(Utils.Transmission.AUTOMATIC.name()))</b>
+&nbsp;
+&nbsp;			);
+&nbsp;
+&nbsp;		}
+&nbsp;	}
+&nbsp;	public static class TS6 extends Transmission {
+&nbsp;
+&nbsp;		public TS6(PartType type) {
+<b class="fc">&nbsp;			super(type);</b>
+<b class="fc">&nbsp;			transmission  = Utils.Transmission.SEQUENTIAL;</b>
+<b class="fc">&nbsp;			addProperty(</b>
+&nbsp;					Utils.TRANSMISSION_SPEED,
+&nbsp;					this :: getSpeed,
+&nbsp;					this :: setSpeed,
+<b class="fc">&nbsp;					new HashSet&lt;&gt;(Arrays.asList(Utils.G_6))</b>
+&nbsp;			);
+<b class="fc">&nbsp;			this.speed = Utils.G_6;</b>
+<b class="fc">&nbsp;			addProperty(</b>
+&nbsp;					Utils.TRANSMISSION_TYPE,
+&nbsp;					this :: getTransmission,
+&nbsp;					this :: setTransmission,
+<b class="fc">&nbsp;					new HashSet&lt;&gt;(Arrays.asList(Utils.Transmission.SEQUENTIAL.name()))</b>
+&nbsp;
+&nbsp;			);
+&nbsp;
+&nbsp;		}
+&nbsp;	}
+&nbsp;	public static class TSF7 extends Transmission {
+&nbsp;
+&nbsp;		public TSF7(PartType type) {
+<b class="fc">&nbsp;			super(type);</b>
+<b class="fc">&nbsp;			transmission  = Utils.Transmission.SEQUENTIAL;</b>
+<b class="fc">&nbsp;			nbWheels= Utils.WHEELS_4;</b>
+<b class="fc">&nbsp;			addProperty(</b>
+&nbsp;					Utils.TRANSMISSION_SPEED,
+&nbsp;					this :: getSpeed,
+&nbsp;					this :: setSpeed,
+<b class="fc">&nbsp;					new HashSet&lt;&gt;(Arrays.asList(Utils.G_7))</b>
+&nbsp;			);
+<b class="fc">&nbsp;			this.speed = Utils.G_7;</b>
+<b class="fc">&nbsp;			addProperty(</b>
+&nbsp;					Utils.TRANSMISSION_TYPE,
+&nbsp;					this :: getTransmission,
+&nbsp;					this :: setTransmission,
+<b class="fc">&nbsp;					new HashSet&lt;&gt;(Arrays.asList(Utils.Transmission.SEQUENTIAL.name()))</b>
+&nbsp;
+&nbsp;			);
+<b class="fc">&nbsp;			addProperty(</b>
+&nbsp;					Utils.WHEEL,
+&nbsp;					this :: getNbWheels,
+&nbsp;					this :: setNbWheels,
+<b class="fc">&nbsp;					new HashSet&lt;&gt;(Arrays.asList(Utils.WHEELS_4))</b>
+&nbsp;			);
+&nbsp;
+&nbsp;		}
+&nbsp;	}
+&nbsp;	public static class TC120 extends Transmission {
+&nbsp;
+&nbsp;		public TC120(PartType type) {
+<b class="fc">&nbsp;			super(type);</b>
+<b class="fc">&nbsp;			transmission  = Utils.Transmission.CONVERTER;</b>
+<b class="fc">&nbsp;			maxPower = Utils.MAX_POWER;</b>
+<b class="fc">&nbsp;			addProperty(</b>
+&nbsp;					Utils.TRANSMISSION_TYPE,
+&nbsp;					this :: getTransmission,
+&nbsp;					this :: setTransmission,
+<b class="fc">&nbsp;					new HashSet&lt;&gt;(Arrays.asList(Utils.Transmission.CONVERTER.name()))</b>
+&nbsp;
+&nbsp;			);
+<b class="fc">&nbsp;			addProperty(</b>
+&nbsp;					Utils.MAX_POWER,
+&nbsp;					this :: getMaxPower,
+&nbsp;					this :: setMaxPower,
+<b class="fc">&nbsp;					new HashSet&lt;&gt;(Arrays.asList(Utils.MAX_120))</b>
+&nbsp;			);
+&nbsp;
+&nbsp;		}
+&nbsp;	}
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-12-19 21:38</div>
+</div>
+</body>
+</html>

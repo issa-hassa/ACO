@@ -1,0 +1,241 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ComptabilityManagerImpl</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">fr.istic.issaouad.impl</a>
+</div>
+
+<h1>Coverage Summary for Class: ComptabilityManagerImpl (fr.istic.issaouad.impl)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ComptabilityManagerImpl</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    89,8%
+  </span>
+  <span class="absValue">
+    (44/49)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package fr.istic.issaouad.impl;
+&nbsp;
+&nbsp;import java.util.*;
+&nbsp;
+&nbsp;import fr.istic.nplouzeau.cartaylor.api.CompatibilityManager;
+&nbsp;import fr.istic.nplouzeau.cartaylor.api.PartType;
+&nbsp;
+&nbsp;public class ComptabilityManagerImpl implements CompatibilityManager {
+&nbsp;	HashMap&lt;PartType, Set&lt;PartType&gt;&gt; incompatibilities ;
+&nbsp;	HashMap&lt;PartType, Set&lt;PartType&gt;&gt; requirements;
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;	public ComptabilityManagerImpl() {</b>
+&nbsp;		
+<b class="fc">&nbsp;		this.incompatibilities = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;		this.requirements = new HashMap&lt;&gt;();</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public Set&lt;PartType&gt; getIncompatibilities(PartType reference) {
+<b class="fc">&nbsp;		Objects.requireNonNull(reference);</b>
+<b class="fc">&nbsp;		if(this.incompatibilities.containsKey(reference)){</b>
+<b class="fc">&nbsp;			return Collections.unmodifiableSet(this.incompatibilities.get(reference));</b>
+&nbsp;		}
+<b class="fc">&nbsp;		return Collections.emptySet();</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public Set&lt;PartType&gt; getRequirements(PartType reference) {
+<b class="fc">&nbsp;		Objects.requireNonNull(reference);</b>
+<b class="fc">&nbsp;		if(this.requirements.containsKey(reference)) {</b>
+<b class="fc">&nbsp;			return Collections.unmodifiableSet(this.requirements.get(reference));</b>
+&nbsp;		}
+<b class="fc">&nbsp;		return Collections.emptySet();</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	/**
+&nbsp;	 * Ajout d&#39;un ensemeble des incomptabilités à la reference
+&nbsp;	 *
+&nbsp;	 * @param reference la reference du type de la piece
+&nbsp;	 * @param target l&#39;ensemble des pieces qui sont incompatible avec la piece reference
+&nbsp;	 * @throws  RuntimeException  si refernece requiert l&#39;un des elements de target ou l&#39;inverse
+&nbsp;	 */
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public void addIncompatibilities(PartType reference, Set&lt;PartType&gt; target) {
+<b class="fc">&nbsp;		Objects.requireNonNull(reference);</b>
+<b class="fc">&nbsp;		Objects.requireNonNull(target);</b>
+&nbsp;
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;		if(this.requirements.containsKey(reference)) {</b>
+&nbsp;
+<b class="fc">&nbsp;			for(PartType incompPartType : target){</b>
+<b class="fc">&nbsp;				if(this.getRequirements(reference).contains(incompPartType)){</b>
+<b class="fc">&nbsp;					throw new RuntimeException(&quot;The part :&quot; +incompPartType.getName() + &quot; is required for the part &quot;+ reference.getName());</b>
+&nbsp;				}
+<b class="fc">&nbsp;				if(this.getRequirements(incompPartType).contains(reference)){</b>
+<b class="nc">&nbsp;					throw new RuntimeException(&quot;The part :&quot; +reference.getName() + &quot; is required for the part &quot;+ incompPartType.getName());</b>
+&nbsp;				}
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;			}</b>
+&nbsp;		}
+<b class="fc">&nbsp;		if(this.incompatibilities.containsKey(reference)){</b>
+<b class="nc">&nbsp;			this.incompatibilities.get(reference).addAll(target);</b>
+&nbsp;		}
+&nbsp;		else {
+<b class="fc">&nbsp;			this.incompatibilities.put(reference, target);</b>
+&nbsp;		}
+&nbsp;
+&nbsp;		
+&nbsp;		
+&nbsp;	}
+&nbsp;
+&nbsp;	/**
+&nbsp;	 *
+&nbsp;	 * @param reference la reference du type de la piece
+&nbsp;	 * @param target  enleve target de la liste d&#39;incompatibilité de reference
+&nbsp;	 */
+&nbsp;	@Override
+&nbsp;	public void removeIncompatibility(PartType reference, PartType target) {
+<b class="fc">&nbsp;		Objects.requireNonNull(reference, &quot;the target can&#39;t be null&quot;);</b>
+<b class="fc">&nbsp;		Objects.requireNonNull(target,&quot;the reference can&#39;t be null&quot;);</b>
+&nbsp;
+<b class="fc">&nbsp;		if(this.incompatibilities.containsKey(reference)) {</b>
+<b class="fc">&nbsp;			if(!this.incompatibilities.get(reference).contains(target))</b>
+<b class="nc">&nbsp;				throw new RuntimeException(reference.getName() + &quot; don&#39;t contain &quot; + target.getName() + &quot;as an incompatibility&quot;);</b>
+<b class="fc">&nbsp;			this.incompatibilities.get(reference).remove(target);</b>
+&nbsp;		}
+<b class="fc">&nbsp;		if(this.incompatibilities.get(reference).isEmpty()) this.incompatibilities.remove(reference);</b>
+&nbsp;		
+&nbsp;		
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public void addRequirements(PartType reference, Set&lt;PartType&gt; target) {
+<b class="fc">&nbsp;		Objects.requireNonNull(reference);</b>
+<b class="fc">&nbsp;		Objects.requireNonNull(target);</b>
+&nbsp;
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;		if(this.incompatibilities.containsKey(reference)) {</b>
+&nbsp;
+<b class="fc">&nbsp;			for(PartType incompPartType : target){</b>
+<b class="fc">&nbsp;				if(getIncompatibilities(reference).contains(incompPartType)){</b>
+<b class="fc">&nbsp;					throw new RuntimeException(&quot;The part :&quot; +incompPartType.getName() + &quot; is incompatible with for the part &quot;+ reference.getName());</b>
+&nbsp;				}
+<b class="fc">&nbsp;				if(getIncompatibilities(incompPartType).contains(reference)){</b>
+<b class="nc">&nbsp;					throw new RuntimeException(&quot;The part :&quot; +reference.getName() + &quot; is incompatible with the part &quot;+ incompPartType.getName());</b>
+&nbsp;				}
+<b class="fc">&nbsp;			}</b>
+&nbsp;		}
+&nbsp;
+<b class="fc">&nbsp;		if(this.requirements.containsKey(reference)){</b>
+<b class="nc">&nbsp;				this.requirements.get(reference).addAll(target);</b>
+&nbsp;		}
+&nbsp;		else {
+<b class="fc">&nbsp;			this.requirements.put(reference, target);</b>
+&nbsp;		}
+&nbsp;
+&nbsp;		
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public void removeRequirement(PartType reference, PartType target) {
+<b class="fc">&nbsp;		Objects.requireNonNull(reference);</b>
+<b class="fc">&nbsp;		Objects.requireNonNull(target);</b>
+<b class="fc">&nbsp;		if(this.requirements.containsKey(reference)) {</b>
+<b class="fc">&nbsp;			if(!this.requirements.get(reference).contains(target)){</b>
+<b class="fc">&nbsp;				throw new RuntimeException(&quot;the reference &quot;+ reference.getName() + &quot;dont contain the value &quot;+ target.getName());</b>
+&nbsp;			}
+<b class="fc">&nbsp;			this.requirements.get(reference).remove(target);</b>
+&nbsp;		}
+<b class="fc">&nbsp;		if(this.requirements.get(reference).isEmpty()) this.requirements.remove(reference);</b>
+&nbsp;	}
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-12-19 21:38</div>
+</div>
+</body>
+</html>

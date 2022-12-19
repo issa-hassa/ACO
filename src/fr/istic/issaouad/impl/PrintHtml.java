@@ -76,6 +76,10 @@ public class PrintHtml implements Visitor {
 
     @Override
     public void visitPartType(PartType p) {
+            out.println("<h2>" +
+                    p.getName()
+                    +"</h2>"
+            );
 
             Part part = ((PartTypeImpl)p).part;
             part.accept(this);

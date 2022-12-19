@@ -1,0 +1,213 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ConfiguratorImpl</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">fr.istic.issaouad.impl</a>
+</div>
+
+<h1>Coverage Summary for Class: ConfiguratorImpl (fr.istic.issaouad.impl)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ConfiguratorImpl</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    66,7%
+  </span>
+  <span class="absValue">
+    (4/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    96,1%
+  </span>
+  <span class="absValue">
+    (49/51)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package fr.istic.issaouad.impl;
+&nbsp;
+&nbsp;import fr.istic.Utils;
+&nbsp;import fr.istic.nplouzeau.cartaylor.api.*;
+&nbsp;
+&nbsp;import java.util.*;
+&nbsp;
+&nbsp;public class ConfiguratorImpl implements Configurator {
+&nbsp;
+&nbsp;    private ComptabilityManagerImpl cm;
+&nbsp;
+&nbsp;    private HashSet&lt;PartType&gt; allPart;
+&nbsp;    private Set&lt;Category&gt; categories;
+&nbsp;
+&nbsp;    private Configuration configuration;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;    CategoryImpl engine = new CategoryImpl(Utils.ENGINE);</b>
+<b class="fc">&nbsp;    CategoryImpl exterior = new CategoryImpl(Utils.EXTERIOR);</b>
+<b class="fc">&nbsp;    CategoryImpl interior = new CategoryImpl(Utils.INTERIOR);</b>
+<b class="fc">&nbsp;    CategoryImpl transmission = new CategoryImpl(Utils.TRANSMISSION);</b>
+&nbsp;
+<b class="fc">&nbsp;    public ConfiguratorImpl(){</b>
+<b class="fc">&nbsp;        this.cm = new ComptabilityManagerImpl();</b>
+<b class="fc">&nbsp;        this.categories  = new HashSet&lt;&gt;(Arrays.asList(engine,exterior,interior,transmission));</b>
+<b class="fc">&nbsp;        this.allPart = new HashSet&lt;&gt;();</b>
+&nbsp;
+<b class="fc">&nbsp;        init();</b>
+<b class="fc">&nbsp;        this.configuration = new ConfigurationImpl(this.cm,new HashSet&lt;&gt;());</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    private void init(){
+<b class="fc">&nbsp;        PartType eg100 = new PartTypeImpl(&quot;EG100&quot;,Engine.EG100.class,engine);</b>
+<b class="fc">&nbsp;        PartType eg133 = new PartTypeImpl(&quot;EG133&quot;,Engine.EG133.class,engine);</b>
+<b class="fc">&nbsp;        PartType eg210 = new PartTypeImpl(&quot;EG210&quot;,Engine.EG210.class,engine);</b>
+<b class="fc">&nbsp;        PartType ed110 = new PartTypeImpl(&quot;ED110&quot;,Engine.ED110.class,engine);</b>
+<b class="fc">&nbsp;        PartType ed180 = new PartTypeImpl(&quot;ED180&quot;,Engine.ED180.class,engine);</b>
+<b class="fc">&nbsp;        PartType eh120 = new PartTypeImpl(&quot;EH120&quot;,Engine.EH120.class,engine);</b>
+&nbsp;
+<b class="fc">&nbsp;        allPart.addAll(Arrays.asList(eg100,eg133,eg210,eh120,ed110,ed180,eh120));</b>
+&nbsp;
+<b class="fc">&nbsp;        PartType tm5 = new PartTypeImpl(&quot;TM5&quot;,Transmission.TM5.class,transmission);</b>
+<b class="fc">&nbsp;        PartType tm6 = new PartTypeImpl(&quot;TM6&quot;,Transmission.TM6.class,transmission);</b>
+<b class="fc">&nbsp;        PartType ta5 = new PartTypeImpl(&quot;TA5&quot;,Transmission.TA5.class,transmission);</b>
+<b class="fc">&nbsp;        PartType ts6 = new PartTypeImpl(&quot;TS6&quot;,Transmission.TS6.class,transmission);</b>
+<b class="fc">&nbsp;        PartType tsf7 = new PartTypeImpl(&quot;TSF7&quot;,Transmission.TSF7.class,transmission);</b>
+<b class="fc">&nbsp;        PartType tc120 = new PartTypeImpl(&quot;TC120&quot;,Transmission.TC120.class,transmission);</b>
+&nbsp;
+<b class="fc">&nbsp;        allPart.addAll(Arrays.asList(tm5,tm6,ta5,ts6,tsf7,tc120));</b>
+&nbsp;
+<b class="fc">&nbsp;        cm.addIncompatibilities(ta5, new HashSet&lt;&gt;(Arrays.asList(eg100)));</b>
+<b class="fc">&nbsp;        cm.addIncompatibilities(tsf7, new HashSet&lt;&gt;(Arrays.asList(eg100,eg133,ed110)));</b>
+<b class="fc">&nbsp;        cm.addRequirements(tc120,new HashSet&lt;&gt;(Arrays.asList(eh120)));</b>
+&nbsp;
+<b class="fc">&nbsp;        PartType xc = new PartTypeImpl(&quot;XC&quot;,Exterior.XC.class,exterior);</b>
+<b class="fc">&nbsp;        PartType xm = new PartTypeImpl(&quot;XM&quot;,Exterior.XM.class,exterior);</b>
+<b class="fc">&nbsp;        PartType xs = new PartTypeImpl(&quot;XS&quot;,Exterior.XS.class,exterior);</b>
+&nbsp;
+<b class="fc">&nbsp;        allPart.addAll(Arrays.asList(xc,xm,xs));</b>
+&nbsp;
+<b class="fc">&nbsp;        cm.addIncompatibilities(xc, new HashSet&lt;&gt;(Arrays.asList(eg210)));</b>
+<b class="fc">&nbsp;        cm.addIncompatibilities(xm, new HashSet&lt;&gt;(Arrays.asList(eg100)));</b>
+<b class="fc">&nbsp;        cm.addIncompatibilities(xs, new HashSet&lt;&gt;(Arrays.asList(eg100)));</b>
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        PartType in = new PartTypeImpl(&quot;IN&quot;,Interior.IN.class,interior);</b>
+<b class="fc">&nbsp;        PartType ih = new PartTypeImpl(&quot;IH&quot;,Interior.IH.class,interior);</b>
+<b class="fc">&nbsp;        PartType is = new PartTypeImpl(&quot;IS&quot;,Interior.IS.class,interior);</b>
+&nbsp;
+<b class="fc">&nbsp;        allPart.addAll(Arrays.asList(in,ih,is));</b>
+&nbsp;
+<b class="fc">&nbsp;        cm.addIncompatibilities(is, new HashSet&lt;&gt;(Arrays.asList(eg100,tm5)));</b>
+<b class="fc">&nbsp;        cm.addRequirements(is,new HashSet&lt;&gt;(Arrays.asList(xs)));</b>
+&nbsp;
+<b class="fc">&nbsp;        cm.addRequirements(xs,new HashSet&lt;&gt;(Arrays.asList(is)));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public Set&lt;Category&gt; getCategories() {
+<b class="nc">&nbsp;        return Collections.unmodifiableSet(this.categories);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public Set&lt;PartType&gt; getVariants(Category category) {
+<b class="fc">&nbsp;        Objects.requireNonNull(category, &quot;The category can&#39;t be null for getVariants&quot;);</b>
+<b class="fc">&nbsp;        Set&lt;PartType&gt; variants = new HashSet&lt;&gt;();</b>
+<b class="fc">&nbsp;        for(PartType p : allPart){</b>
+<b class="fc">&nbsp;            if(p.getCategory().equals( category)){</b>
+<b class="fc">&nbsp;                variants.add(p);</b>
+&nbsp;            }
+<b class="fc">&nbsp;        }</b>
+<b class="fc">&nbsp;        return variants;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public Configuration getConfiguration() {
+<b class="fc">&nbsp;        return this.configuration;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public CompatibilityChecker getCompatibilityChecker() {
+<b class="nc">&nbsp;        return this.cm;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-12-19 21:38</div>
+</div>
+</body>
+</html>
