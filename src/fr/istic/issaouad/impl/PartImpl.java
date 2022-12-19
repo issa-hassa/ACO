@@ -3,6 +3,7 @@ package fr.istic.issaouad.impl;
 import fr.istic.nplouzeau.cartaylor.api.Category;
 import fr.istic.nplouzeau.cartaylor.api.Part;
 import fr.istic.nplouzeau.cartaylor.api.PartType;
+import fr.istic.nplouzeau.cartaylor.api.PrintHtml;
 
 import java.util.*;
 import java.util.function.Consumer;
@@ -10,6 +11,7 @@ import java.util.function.Supplier;
 
 public class PartImpl implements Part {
     private PartType type;
+
 
     public PartImpl(PartType type) {
         this.type = type;
@@ -35,6 +37,10 @@ public class PartImpl implements Part {
     public PartType getType() {
         return type;
     }
+
+
+
+
     private class Property {
         /** Getter for property*/
         public final Supplier<String> getter;
@@ -142,5 +148,10 @@ public class PartImpl implements Part {
         } else {
             throw new IllegalArgumentException("bad property name or value: " + propertyName);
         }
+    }
+
+    @Override
+    public void accept(PrintHtml p) {
+
     }
 }

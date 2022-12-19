@@ -33,21 +33,21 @@ public class ConfiguratorImpl implements Configurator {
     }
 
     private void init(){
-        PartType eg100 = new PartTypeImpl("EG100",engine);
-        PartType eg133 = new PartTypeImpl("EG133",engine);
-        PartType eg210 = new PartTypeImpl("EG210",engine);
-        PartType ed110 = new PartTypeImpl("ED110",engine);
-        PartType ed180 = new PartTypeImpl("ED180",engine);
-        PartType eh120 = new PartTypeImpl("EH120",engine);
+        PartType eg100 = new PartTypeImpl("EG100",Engine.EG100.class,engine);
+        PartType eg133 = new PartTypeImpl("EG133",Engine.EG133.class,engine);
+        PartType eg210 = new PartTypeImpl("EG210",Engine.EG210.class,engine);
+        PartType ed110 = new PartTypeImpl("ED110",Engine.ED110.class,engine);
+        PartType ed180 = new PartTypeImpl("ED180",Engine.ED180.class,engine);
+        PartType eh120 = new PartTypeImpl("EH120",Engine.EH120.class,engine);
 
         allPart.addAll(Arrays.asList(eg100,eg133,eg210,eh120,ed110,ed180,eh120));
 
-        PartType tm5 = new PartTypeImpl("TM5",transmission);
-        PartType tm6 = new PartTypeImpl("TM6",transmission);
-        PartType ta5 = new PartTypeImpl("TA5",transmission);
-        PartType ts6 = new PartTypeImpl("TS6",transmission);
-        PartType tsf7 = new PartTypeImpl("TSF7",transmission);
-        PartType tc120 = new PartTypeImpl("TC120",transmission);
+        PartType tm5 = new PartTypeImpl("TM5",Transmission.TM5.class,transmission);
+        PartType tm6 = new PartTypeImpl("TM6",Transmission.TM6.class,transmission);
+        PartType ta5 = new PartTypeImpl("TA5",Transmission.TA5.class,transmission);
+        PartType ts6 = new PartTypeImpl("TS6",Transmission.TS6.class,transmission);
+        PartType tsf7 = new PartTypeImpl("TSF7",Transmission.TSF7.class,transmission);
+        PartType tc120 = new PartTypeImpl("TC120",Transmission.TC120.class,transmission);
 
         allPart.addAll(Arrays.asList(tm5,tm6,ta5,ts6,tsf7,tc120));
 
@@ -55,9 +55,9 @@ public class ConfiguratorImpl implements Configurator {
         cm.addIncompatibilities(tsf7, new HashSet<>(Arrays.asList(eg100,eg133,ed110)));
         cm.addRequirements(tc120,new HashSet<>(Arrays.asList(eh120)));
 
-        PartType xc = new PartTypeImpl("XC",exterior);
-        PartType xm = new PartTypeImpl("XM",exterior);
-        PartType xs = new PartTypeImpl("XS",exterior);
+        PartType xc = new PartTypeImpl("XC",Exterior.XC.class,exterior);
+        PartType xm = new PartTypeImpl("XM",Exterior.XM.class,exterior);
+        PartType xs = new PartTypeImpl("XS",Exterior.XS.class,exterior);
 
         allPart.addAll(Arrays.asList(xc,xm,xs));
 
@@ -66,9 +66,9 @@ public class ConfiguratorImpl implements Configurator {
         cm.addIncompatibilities(xs, new HashSet<>(Arrays.asList(eg100)));
 
 
-        PartType in = new PartTypeImpl("IN",interior);
-        PartType ih = new PartTypeImpl("IH",interior);
-        PartType is = new PartTypeImpl("IS",interior);
+        PartType in = new PartTypeImpl("IN",Interior.IN.class,interior);
+        PartType ih = new PartTypeImpl("IH",Interior.IH.class,interior);
+        PartType is = new PartTypeImpl("IS",Interior.IS.class,interior);
 
         allPart.addAll(Arrays.asList(in,ih,is));
 
