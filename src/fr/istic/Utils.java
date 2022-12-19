@@ -6,6 +6,8 @@ public class Utils {
 
     public static final String PAINT = "paint";
 
+    public static final String QUALITY = "quality";
+
     public static final String KW_100 = "100kw";
     public static final String KW_133 = "100kw";
     public static final String KW_210 = "100kw";
@@ -24,6 +26,12 @@ public class Utils {
         CLASSIC,
         METALLIC,
         RED
+    }
+
+    public enum Quality {
+        STANDARD,
+        HIGH,
+        SPORT
     }
 
 
