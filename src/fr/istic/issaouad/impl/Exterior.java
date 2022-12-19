@@ -27,7 +27,7 @@ public class Exterior extends PartImpl {
 		this.color.valueOf(color);
 	}
 
-	public static class XC extends Exterior {
+	public static   class XC extends Exterior {
 
 		public XC(PartType type) {
 			super(type);
@@ -51,7 +51,7 @@ public class Exterior extends PartImpl {
 			);
 		}
 	}
-	public static class XS extends Exterior {
+	public static   class XS extends Exterior {
 
 		public XS(PartType type) {
 			super(type);

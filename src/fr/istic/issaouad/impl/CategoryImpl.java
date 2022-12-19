@@ -26,11 +26,7 @@ public class CategoryImpl implements  Category {
 		return this.name.equals(((CategoryImpl)obj).getName());
 	}
 
-	@Override
-	public boolean equals(Object o){
-		if(!(o instanceof CategoryImpl)) return false;
-		return ((CategoryImpl)o).getName().equals(this.name);
-	}
+
 
 
 }

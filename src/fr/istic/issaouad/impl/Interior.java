@@ -24,7 +24,7 @@ public class Interior extends PartImpl{
 		this.quality.valueOf(quality);
 	}
 
-	public static class IN extends Interior{
+	public static   class IN extends Interior{
 
 		public IN(PartType type) {
 			super(type);

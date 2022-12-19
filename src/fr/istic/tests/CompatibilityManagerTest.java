@@ -3,6 +3,7 @@ package fr.istic.tests;
 import fr.istic.Utils;
 import fr.istic.issaouad.impl.*;
 import fr.istic.nplouzeau.cartaylor.api.CompatibilityManager;
+import fr.istic.nplouzeau.cartaylor.api.PartType;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeAll;
@@ -52,27 +53,26 @@ public class CompatibilityManagerTest {
      */
     @Before
     public void init() {
-        eg100 = new PartTypeImpl("EG100", engine);
-        eg133 = new PartTypeImpl("EG133", engine);
-        eg210 = new PartTypeImpl("EG210", engine);
-        ed110 = new PartTypeImpl("EG110", engine);
-        ed180 = new PartTypeImpl("EG180", engine);
-        eh120 = new PartTypeImpl("EH120", engine);
+        eg100 = new PartTypeImpl("EG100",Engine.EG100.class, engine);
+        eg133 = new PartTypeImpl("EG133",Engine.EG133.class, engine);
+        eg210 = new PartTypeImpl("EG210",Engine.EG210.class,  engine);
+        ed110 = new PartTypeImpl("EG110",Engine.ED110.class, engine);
+        ed180 = new PartTypeImpl("EG180",Engine.ED180.class, engine);
+        eh120 = new PartTypeImpl("EH120",Engine.EH120.class, engine);
 
-        xc = new PartTypeImpl("XC", exterior);
-        xm = new PartTypeImpl("XM", exterior);
-        xs = new PartTypeImpl("XS", exterior);
+         xc = new PartTypeImpl("XC",Exterior.XC.class,exterior);
+         xm = new PartTypeImpl("XM",Exterior.XM.class,exterior);
+         xs = new PartTypeImpl("XS",Exterior.XS.class,exterior);
 
-        in = new PartTypeImpl("IN", interior);
-        ih = new PartTypeImpl("IH", interior);
-        is = new PartTypeImpl("IS", interior);
-
-        tm5 = new PartTypeImpl("TM5", transmission);
-        tm6 = new PartTypeImpl("TM5", transmission);
-        ta5 = new PartTypeImpl("TM5", transmission);
-        ts6 = new PartTypeImpl("TM5", transmission);
-        tsf7 = new PartTypeImpl("TM5", transmission);
-        tc120 = new PartTypeImpl("TM5", transmission);
+         in = new PartTypeImpl("IN",Interior.IN.class,interior);
+         ih = new PartTypeImpl("IH",Interior.IH.class,interior);
+         is = new PartTypeImpl("IS",Interior.IS.class,interior);
+         tm5 = new PartTypeImpl("TM5",Transmission.TM5.class,transmission);
+         tm6 = new PartTypeImpl("TM6",Transmission.TM6.class,transmission);
+         ta5 = new PartTypeImpl("TA5",Transmission.TA5.class,transmission);
+         ts6 = new PartTypeImpl("TS6",Transmission.TS6.class,transmission);
+         tsf7 = new PartTypeImpl("TSF7",Transmission.TSF7.class,transmission);
+         tc120 = new PartTypeImpl("TC120",Transmission.TC120.class,transmission);
 
         cm.addRequirements(eh120, new HashSet<>(Arrays.asList(tc120)));
         cm.addIncompatibilities(xc, new HashSet<>(Arrays.asList(eg210)));
