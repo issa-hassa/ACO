@@ -21,6 +21,6 @@ public interface Part extends PropertyManager {
      */
     PartType getType();
 
-    void accept(PrintHtml p);
+    void accept(Visitor p);
 
 }

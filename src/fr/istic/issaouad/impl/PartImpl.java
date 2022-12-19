@@ -3,7 +3,7 @@ package fr.istic.issaouad.impl;
 import fr.istic.nplouzeau.cartaylor.api.Category;
 import fr.istic.nplouzeau.cartaylor.api.Part;
 import fr.istic.nplouzeau.cartaylor.api.PartType;
-import fr.istic.nplouzeau.cartaylor.api.PrintHtml;
+import fr.istic.nplouzeau.cartaylor.api.Visitor;
 
 import java.util.*;
 import java.util.function.Consumer;
@@ -151,7 +151,7 @@ public class PartImpl implements Part {
     }
 
     @Override
-    public void accept(PrintHtml p) {
-
+    public void accept(Visitor p) {
+        p.visitPart(this);
     }
 }

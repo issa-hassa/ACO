@@ -9,5 +9,5 @@ public interface PartType {
     Category getCategory();
 
     PartImpl newInstance();
-    void accept(PrintHtml p);
+    void accept(Visitor p);
 }

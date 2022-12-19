@@ -3,7 +3,7 @@ package fr.istic.issaouad.impl;
 import fr.istic.Utils;
 import fr.istic.nplouzeau.cartaylor.api.Configuration;
 import fr.istic.nplouzeau.cartaylor.api.PartType;
-import fr.istic.nplouzeau.cartaylor.api.PrintHtml;
+import fr.istic.nplouzeau.cartaylor.api.Visitor;
 
 import java.util.Set;
 
@@ -31,8 +31,8 @@ public class Main {
             if(p.getName().equals("TM5")) configuration.selectPart(p);
         }
         System.out.println(configuration.getSelectedParts().size());
-        PrintHtml html = new PrintHtmlImpl(System.out);
-        html.visitConfiguration(configuration);
+        PrintHtml html = new PrintHtml(System.out,configuration);
+        html.printConfiguration();
 
     }
 }

@@ -2,8 +2,7 @@ package fr.istic.issaouad.impl;
 
 import fr.istic.nplouzeau.cartaylor.api.Category;
 import fr.istic.nplouzeau.cartaylor.api.PartType;
-import fr.istic.nplouzeau.cartaylor.api.PrintHtml;
-import org.omg.CORBA.Object;
+import fr.istic.nplouzeau.cartaylor.api.Visitor;
 
 import java.lang.reflect.Constructor;
 import java.util.Objects;
@@ -74,7 +73,7 @@ public class PartTypeImpl implements PartType {
 	}
 
 	@Override
-	public void accept(PrintHtml p) {
+	public void accept(Visitor p) {
 		p.visitPartType(this);
 	}
 

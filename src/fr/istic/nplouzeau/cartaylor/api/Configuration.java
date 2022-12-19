@@ -48,7 +48,7 @@ public interface Configuration {
     /**
      * supprimer toutes les categorie
      */
-    void accept(PrintHtml p);
+    void accept(Visitor p);
     void clear();
 
 }

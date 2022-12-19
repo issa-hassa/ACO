@@ -9,6 +9,6 @@ public interface Category {
 
     String getName();
 
-    void accept(PrintHtml p);
+    void accept(Visitor p);
 
 }
