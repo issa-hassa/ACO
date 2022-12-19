@@ -155,6 +155,7 @@ public class Transmission extends PartImpl {
 		public TSF7(PartType type) {
 			super(type);
 			transmission  = Utils.Transmission.SEQUENTIAL;
+			nbWheels= Utils.WHEELS_4;
 			addProperty(
 					Utils.TRANSMISSION_SPEED,
 					this :: getSpeed,
@@ -183,6 +184,7 @@ public class Transmission extends PartImpl {
 		public TC120(PartType type) {
 			super(type);
 			transmission  = Utils.Transmission.CONVERTER;
+			maxPower = Utils.MAX_POWER;
 			addProperty(
 					Utils.TRANSMISSION_TYPE,
 					this :: getTransmission,
